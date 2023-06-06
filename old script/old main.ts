@@ -882,7 +882,34 @@ function renderLanguages(parent:HTMLElement) {
 //   });
 
 
-
+// function insertTemplate(whereToInsert) {
+//     let brand = document.querySelector(
+//         '#page-wrapper > div > div > section > div > main > div.thread-details > div > div:nth-child(2) > div > div:nth-child(2) > b'
+//       ).nextElementSibling.innerHTML;
+//     let word = 'brand';
+//     let pattern = new RegExp('\\*' + word + '\\*', 'g');
+//     const openMail = document.querySelector(
+//       '#page-wrapper > div > div > section > div > main > div.reply > p'
+//     );
+//     openMail.click();
+//     async function openEditor() {
+//         const sourceBtn = document.getElementById('cke_39');
+//         sourceBtn.click();
+//         await delay(100);
+//         const textArea = document.querySelector(
+//           '.cke_source.cke_reset.cke_enable_context_menu.cke_editable.cke_editable_themed.cke_contents_ltr'
+//         );
+//         textArea.value = mainTemplate;
+//         textArea.value = textArea.value.replace(pattern, brand);
+//         await delay(100);
+//         sourceBtn.click();
+//         console.log('Finished!');
+//       }
+//       function delay(ms) {
+//         return new Promise((resolve) => setTimeout(resolve, ms));
+//       }
+//       openEditor();
+// }
 
 
 

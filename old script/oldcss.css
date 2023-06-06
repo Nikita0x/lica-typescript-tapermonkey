@@ -1,0 +1,299 @@
+
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  * {
+    margin: 0;
+  }
+  
+  html, body {
+    height: 100%;
+  }
+  
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  
+  input, button, textarea, select {
+    font: inherit;
+  }
+  
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  
+  #root, #__next {
+    isolation: isolate;
+  }
+  
+  :root {
+    --primary-color: #026E81;
+    --secondary-color: #00ABBD;
+    --accent-color: #ffb163f0;
+    --background-color: #A1C7E0;
+    --outline-color: #0099DD;
+    --text-color: #dddddd;
+    
+  }
+  /* #app {
+    height: 1000vh;
+  } */
+  /* ====================================================== */
+  .lica-wrapper {
+    position: sticky;
+    top: 5%;
+    background-color: var(--background-color);
+    width: 380px;
+    padding:0 10px;
+    /* ============================= */
+    /* for production - -10%*/
+    transform: translateX(0);   
+  }
+  
+  
+  /* Header */
+  .header{
+    position: relative;
+    top: 0;
+    height: 20%;
+    background-color: var(--primary-color);
+  }
+  
+  .header__title {
+    text-align: center;
+    font-weight: 100;
+    color: var(--text-color);
+  }
+  .header__buttons {
+    display: flex;
+  }
+  
+  /* body */
+  .lica-body {
+    display: grid;
+    height: 70%;
+    min-height: 200px;
+    max-height: 400px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(auto-fill, 70px);
+    gap: 4px;
+    overflow-y: scroll;
+    padding: 5px 0;
+  }
+  
+  .lica-btn {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 70px;
+    cursor: pointer;
+    background-color: chartreuse;
+    border: 1px solid #2d2d2d;
+    border-radius: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .lica-btn__title {
+    padding-left: 5px;
+    width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .lica-btn__edit {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    right: 13%;
+    background: url('https://svgshare.com/i/tqA.svg');
+    background-position: center;
+    background-size: cover;
+  }
+  .lica-btn__delete{
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    right: 2%;
+    background: url('https://svgshare.com/i/toz.svg');
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .lica-btn__accept{
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    right: 13%;
+    background: url('https://svgshare.com/i/tpr.svg');
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .lica-btn__cancel{
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    right: 2%;
+    background: url('https://svgshare.com/i/tpT.svg');
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .lica-btn__input{
+    position: relative;
+    height: 25px;
+    width: 126px;
+    left: 3px;
+  }
+  .lica-btn__input:focus {
+  outline: 2px solid #715fde;
+  }
+  
+  /*======================== modal- categories */
+  .categories {
+    position: absolute;
+    top: 0;
+    left:0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: #2d2d2d;
+  }
+  .categories__header {
+    position: relative;
+    top: 0;
+    height: 20%;
+    background-color: rgb(64, 67, 144);
+  }
+  .categories__title {
+    text-align: center;
+    font-weight: 100;
+    color: var(--text-color);
+  }
+  .categories__buttons {
+    display: flex;
+  
+  }
+  
+  .categories__body {
+    display: grid;
+    height: 70%;
+    min-height: 200px;
+    max-height: 400px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(auto-fill, 70px);
+    gap: 4px;
+    overflow-y: scroll;
+    padding: 5px 0;
+  }
+  .categories__footer {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 0;
+    height: 10%;
+    color: var(--text-color);
+    background-color: rgb(64, 67, 144);
+  }
+  
+  
+  /*======================== modal- templates */
+  .templates {
+    position: absolute;
+    top: 0;
+    left:0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background-color: #2d2d2d;
+  }
+  .templates__header {
+    position: relative;
+    top: 0;
+    height: 20%;
+    background-color: rgb(62, 194, 157);
+  }
+  .templates__title {
+    text-align: center;
+    font-weight: 100;
+    color: var(--text-color);
+  }
+  .templates__buttons {
+    display: flex;
+  
+  }
+  
+  .templates__body {
+    display: grid;
+    height: 70%;
+    min-height: 200px;
+    max-height: 400px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(auto-fill, 70px);
+    gap: 4px;
+    overflow-y: scroll;
+    padding: 5px 0;
+  }
+  .templates__footer {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 0;
+    height: 10%;
+    color: var(--text-color);
+    background-color: rgb(62, 194, 157);
+  }
+  
+  /* brand */
+  .brand {
+    position: absolute;
+    top: 10px;
+    left: 580px;
+  }
+  
+  /* test area textarea */
+  
+  .cke_source.cke_reset.cke_enable_context_menu.cke_editable.cke_editable_themed.cke_contents_ltr {
+    position: absolute;
+    top: 50px;
+    left: 420px;
+  }
+  
+  /* Modal template */
+  .modalTemplate {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(128, 128, 128, 0.396);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  .modalContent {
+    position: relative;
+    width: 1000px;
+    height: 400px;
+    background-color: rgb(92, 186, 181);
+  }
+  
+  .footer {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 0;
+    height: 10%;
+    color: var(--text-color);
+    background-color: var(--primary-color);
+  }
+  

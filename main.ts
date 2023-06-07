@@ -1360,9 +1360,24 @@
             }
         }
         } 
-
-
     }
+
+
+
+    //empty template lvl 1 logic
+    const emptyTemplate1lvl = document.querySelector('.container__footer') as HTMLElement;
+
+    const emptyTemplate1lvlEdit = document.querySelector('.container__footer-edit') as HTMLElement;
+
+
+
+
+
+
+
+
+
+
 
 
 }, 2000);})();

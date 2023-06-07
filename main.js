@@ -1236,5 +1236,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                 }
             }
         }
+        //empty template lvl 1 logic
+        const emptyTemplate1lvl = document.querySelector('.container__footer');
+        const emptyTemplate1lvlEdit = document.querySelector('.container__footer-edit');
     }, 2000);
 })();

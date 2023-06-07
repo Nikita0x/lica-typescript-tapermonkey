@@ -319,6 +319,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
           cursor: pointer;
           border-radius: 0px 0px 10px 10px;
           border: 1px solid rgb(108, 117, 125);
+          &:hover{
+            background-color: var(--btnHover);
+          }
+          &:active {
+            background-color: var(--btnActive);
+          }
       }
       .categories__footer-title {
           font-weight: 100;
@@ -328,18 +334,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
           height: 20px;
           width: 40px;
       }
-      .categories__footer-title-edit {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 20px;
-          height: 20px;
-      }
       .categories__footer-edit {
-          background-color: rgb(195, 195, 195);
-          cursor: default;
-          font-size: 16px;
-      }
+        background: url('https://svgshare.com/i/tqA.svg');
+        background-position: center;
+        background-size: cover;
+        cursor: default;
+        font-size: 16px;
+        width: 20px;
+        height: 20px;
+        cursor: default !important;
+    }
+    .categories__footer-edit:hover{
+      background-color: var(--btnEditHover);
+    }
+    .categories__footer-edit:active{
+      background-color: var(--btnEditActive);
+    }
         
         
         /*======================== modal- templates */
@@ -413,17 +423,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
           width: 100%;
       }
       .templates__footer-template {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 70px;
-          width: 100%;
-          background-color: rgb(224, 224, 224);
-          color: black;
-          cursor: pointer;
-          border-radius: 0px 0px 10px 10px;
-          border: 1px solid rgb(108, 117, 125);
-      }
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70px;
+        width: 100%;
+        background-color: rgb(224, 224, 224);
+        color: black;
+        cursor: pointer;
+        border-radius: 0px 0px 10px 10px;
+        border: 1px solid rgb(108, 117, 125);
+        &:hover{
+          background-color: var(--btnHover);
+        }
+        &:active {
+          background-color: var(--btnActive);
+        }
+    }
       .templates__footer-title {
           font-weight: 100;
           font-size: 20px;
@@ -432,18 +448,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
           height: 20px;
           width: 40px;
       }
-      .templates__footer-title-edit {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 20px;
-          height: 20px;
-      }
-      .templates__footer-edit {
-          background-color: rgb(195, 195, 195);
-          cursor: default;
-          font-size: 16px;
-      }
+    
       
         /* Modal template */
         .lica-modalTemplate {
@@ -533,6 +538,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
           border-radius: 0px 0px 10px 10px;
           border: 1px solid rgb(108, 117, 125);
       }
+      .container__footer-template:hover{
+        background-color: var(--btnHover);
+      }
+      .container__footer-template:active{
+        background-color: var(--btnActive);
+      }
       .container__footer-title {
           font-weight: 100;
           font-size: 20px;
@@ -541,17 +552,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
           height: 20px;
           width: 40px;
       }
-      .container__footer-title-edit {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 20px;
-          height: 20px;
-      }
+      
       .container__footer-edit {
-          background-color: rgb(195, 195, 195);
+          background: url('https://svgshare.com/i/tqA.svg');
+          background-position: center;
+          background-size: cover;
           cursor: default;
           font-size: 16px;
+          width: 20px;
+          height: 20px;
+          cursor: default !important;
+      }
+      .container__footer-edit:hover{
+        background-color: var(--btnEditHover);
+      }
+      .container__footer-edit:active{
+        background-color: var(--btnEditActive);
       }
       
       
@@ -600,7 +616,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 
 
     <div class="container__body">
-        <div class="button">Hello</div>
     </div>
     
 
@@ -608,9 +623,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         <div class="container__footer-template">
             <h3 class="container__footer-title">Empty Template</h3>
             <div class="container__footer-spacer"></div>
-            <div class="container__footer-title-edit">
                 <button class="container__footer-edit"></button>
-            </div>
         </div>
     </div>
 
@@ -811,9 +824,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                         <div class="categories__footer-template">
                             <h3 class="categories__footer-title">Empty Template</h3>
                             <div class="categories__footer-spacer"></div>
-                            <div class="categories__footer-title-edit">
-                                <button class="categories__footer-edit"></button>
-                            </div>
+                            <button class="container__footer-edit"></button>
                         </div>
                     </div>
                 </footer>
@@ -993,9 +1004,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                         <div class="templates__footer-template">
                             <h3 class="templates__footer-title">Empty Template</h3>
                             <div class="templates__footer-spacer"></div>
-                            <div class="templates__footer-title-edit">
-                                <button class="templates__footer-edit"></button>
-                            </div>
+                            <button class="container__footer-edit"></button>
                         </div>
                     </div>
                 </footer>
@@ -1092,18 +1101,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                             const modalSave = document.querySelector('.lica-modalSave');
                             const modalCancel = document.querySelector('.lica-modalCancel');
                             const modalText = document.querySelector('.lica-modalText');
-                            //close modal when clicked outside
-                            modalTemplate.addEventListener('click', () => {
-                                modal.remove();
-                            });
-                            modalContent.addEventListener('click', (e) => {
-                                e.stopPropagation();
-                                e.stopImmediatePropagation();
-                                e.preventDefault();
-                                return false;
+                            //close modal when clicked outsidee
+                            modalTemplate.addEventListener('mousedown', (e) => {
+                                const computedStyle = window.getComputedStyle(modalContent);
+                                if (modalContent.contains(e.target)) {
+                                }
+                                else {
+                                    modal.remove();
+                                }
                             });
                             // cancel button
-                            modalCancel.addEventListener('click', () => {
+                            modalCancel.addEventListener('click', (e) => {
                                 modal.remove();
                             });
                             // save button

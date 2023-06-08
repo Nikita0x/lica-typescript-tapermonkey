@@ -2,9 +2,15 @@
   --btnMain: #f0f0f0;
   --btnHover: #d7d7d7;
   --btnActive: #cacaca;
+  --emptyTemplateHover: #bbbbbb;
+  --emptyTemplateActive: #979696;
   --btnEditHover: #b0b0b0;
   --btnEditActive: #979797;
-  --categoriesColors: rgb(64, 67, 144);
+  --categoriesColors: #404390;
+  --categoriesColorsHover: #333573;
+  --categoriesColorsActive: #262856;
+  --categoriesEditHover: #1d1e44;
+  --categoriesEditActive: #12132e;
   --templatesColors: rgb(39 96 87);
 }
 
@@ -22,7 +28,7 @@
 
 .container {
   position: relative;
-  top: 5%;
+  top: 0;
   height: 720px;
   width: 355px;
   border-radius: 10px;
@@ -314,17 +320,22 @@
   cursor: pointer;
   border-radius: 0px 0px 10px 10px;
   border: 1px solid rgb(108, 117, 125);
+  background-color: var(--categoriesColors);
 }
 .categories__footer-template:hover {
-  background-color: var(--btnHover);
+  background-color: var(--categoriesColorsHover);
 }
 .categories__footer-template:active {
-  background-color: var(--btnActive);
+  background-color: var(--categoriesColorsActive);
+}
+.categories__footer-template .container__footer-edit {
+  fill: white;
 }
 
 .categories__footer-title {
   font-weight: 100;
   font-size: 20px;
+  color: white;
 }
 
 .categories__footer-spacer {
@@ -333,9 +344,10 @@
 }
 
 .categories__footer-edit {
-  background: url("https://svgshare.com/i/tqA.svg");
+  background: url("https://i.ibb.co/2FP1V5J/edit-pencil-line-02-svgrepo-com.png");
   background-position: center;
   background-size: cover;
+  background-color: transparent;
   cursor: default;
   font-size: 16px;
   width: 20px;
@@ -344,11 +356,11 @@
 }
 
 .categories__footer-edit:hover {
-  background-color: var(--btnEditHover);
+  background-color: var(--categoriesEditHover);
 }
 
 .categories__footer-edit:active {
-  background-color: var(--btnEditActive);
+  background-color: var(--categoriesEditActive);
 }
 
 /*======================== modal- templates */
@@ -516,11 +528,11 @@
 }
 
 .container__footer-template:hover {
-  background-color: var(--btnHover);
+  background-color: var(--emptyTemplateHover);
 }
 
 .container__footer-template:active {
-  background-color: var(--btnActive);
+  background-color: var(--emptyTemplateActive);
 }
 
 .container__footer-title {
@@ -534,7 +546,7 @@
 }
 
 .container__footer-edit {
-  background: url("https://svgshare.com/i/tqA.svg");
+  background: url("https://svgshare.com/i/tqA.svg)");
   background-position: center;
   background-size: cover;
   cursor: default;

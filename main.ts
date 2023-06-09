@@ -664,7 +664,6 @@
     console.log(`buttonsArray:`, buttonsArray)
 
     let emptyTemplateLvl1Array = JSON.parse(localStorage.getItem('template1') || '[]')
-    let emptyTemplateLvl2Array = JSON.parse(localStorage.getItem('template2') || '[]')
 
     let emptyTemplates = JSON.parse(localStorage.getItem('emptyTemplates') || '[]');
     // ======================
@@ -1082,12 +1081,21 @@
         // save a template
         categoriesEditBtn.addEventListener('click', (e) => {
           // save new template
-          openEmptyTemplateLvl2Edit()
-          function openEmptyTemplateLvl2Edit() {
+          openEmptyTemplateLvl2Edit(btnObject)
+          function openEmptyTemplateLvl2Edit(btnObject: BtnObject) {
+            const emptyTemplateObj: TemplateObj = {
+              id: btnObject.id,
+              title: btnObject.title,
+              categoryID: 'none',
+              text: `Hi #user_name#!\n<br>\nThank you for contacting our *brand* Support Team!\n<br>\n<br>\nIn order to receive a prompt response, we also advise you to contact live chat on our website. Our agents work 24/7 for you every day.\n<br>\nSincerely,\n<br>*brand* Support team`
+          }
               e.stopPropagation();
+              console.log('emptyTemplate objects is ', emptyTemplateObj)
+              console.log('btnObject  is ', btnObject)
+
                       
               const modal = document.createElement('div')
-              modal.id = 'emptyTemplate2';
+              modal.id = btnObject.id;
               modal.classList.add('lica-modalTemplate')
               parentMain.appendChild(modal)
               modal.innerHTML = `
@@ -1125,7 +1133,6 @@
 
               //close modal when clicked outsidee
               modalTemplate.addEventListener('mousedown', (e:MouseEvent) => {
-                  const computedStyle = window.getComputedStyle(modalContent)
                   if(modalContent.contains(e.target as Node)) {
                   } else {
                       modal.remove();
@@ -1141,18 +1148,15 @@
               // save button
               modalSave.addEventListener('click', (e) => {
                   e.stopPropagation();
-                  emptyTemplateLvl2Array = [];
-                  const emptyTemplateObj: TemplateObj = {
-                      id: (Date.now()).toString(),
-                      title: 'emptyTemplate2',
-                      categoryID: 'none',
-                      text: `Hi #user_name#!\n<br>\nThank you for contacting our *brand* Support Team!\n<br>\n<br>\nIn order to receive a prompt response, we also advise you to contact live chat on our website. Our agents work 24/7 for you every day.\n<br>\nSincerely,\n<br>*brand* Support team`
-                  }
+                  emptyTemplates.forEach((item:any, index:any) => {
+                    if(item.id === emptyTemplateObj.id) {
+                      emptyTemplates.splice(index,1)
+                    }
+                  })
+                  
                   emptyTemplateObj.text = modalText.value;
-                  emptyTemplateLvl2Array
-                  .push(emptyTemplateObj)
-                  localStorage.setItem('template2', JSON.stringify(emptyTemplateLvl2Array))
-                  console.log(emptyTemplateLvl2Array)
+                  emptyTemplates.push(emptyTemplateObj)
+                  localStorage.setItem('emptyTemplates', JSON.stringify(emptyTemplates))
 
                   modalText.value = 'Saved!'
                   setTimeout(() => {
@@ -1161,18 +1165,19 @@
               })          
 
               // render template
-              emptyTemplateLvl2Array.forEach((item:any) => {
+              emptyTemplates.forEach((item:any) => {
+                if(item.id === btnObject.id) {
                   modalText.value = item.text;
-                  console.log(item)
+                }
               })
           };
 
         })
 
-        //insert a template
+        //insert a templatee
         categoriesFooterTemplate.addEventListener('click', () => {
-          insertTemplate(emptyTemplateLvl2Array[0])
-          function insertTemplate(template: any) {
+          insertTemplate(btnObject)
+          function insertTemplate(btnObject:BtnObject) {
               let brand = document.querySelector(
                   '#page-wrapper > div > div > section > div > main > div.thread-details > div > div:nth-child(2) > div > div:nth-child(2) > b'
               )?.nextElementSibling?.innerHTML as any;
@@ -1190,11 +1195,15 @@
                   const textArea = document.querySelector(
                   '.cke_source.cke_reset.cke_enable_context_menu.cke_editable.cke_editable_themed.cke_contents_ltr'
                   ) as HTMLTextAreaElement;
-                  textArea.value = template.text;
-                  textArea.value = textArea.value.replace(pattern, brand);
+                  emptyTemplates.forEach((item:any) => {
+                    if(item.id === btnObject.id) {
+                      textArea.value = item.text;
+                      textArea.value = textArea.value.replace(pattern, brand);
+                      sourceBtn.click();
+                      console.log('Finished!');
+                    }
+                  })
                   await delay(100);
-                  sourceBtn.click();
-                  console.log('Finished!');
               }
               function delay(ms:number) {
                   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -1661,6 +1670,7 @@
 
 
 
+    console.log(emptyTemplates)
 
 
 

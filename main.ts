@@ -1183,7 +1183,6 @@
                 }
               })
           };
-
         })
 
         //insert a templatee
@@ -1248,301 +1247,438 @@
         //render templates for categories - lvl 3
         function templatesModal(categoryObj:CategoryObj) {
 
-        const templates = document.createElement('div')
-        templates.classList.add('templates')
-        templates.innerHTML = `
-        <!-- modal-templates -->
-            <div class="templates">
+          const templates = document.createElement('div')
+          templates.classList.add('templates')
+          templates.innerHTML = `
+          <!-- modal-templates -->
+              <div class="templates">
 
 
-                <nav class="templates__header">
-                    <h2 class="templates__title"></h2>
-                    <div class="templates__buttons">
-                        <button class="templates__back"><< Back</button>
-                        <button class="templates__new_template">Add new template</button>
-                    </div>
-                    <input class='templates__input' type="text" placeholder="Search...">
-                </nav>
+                  <nav class="templates__header">
+                      <h2 class="templates__title"></h2>
+                      <div class="templates__buttons">
+                          <button class="templates__back"><< Back</button>
+                          <button class="templates__new_template">Add new template</button>
+                      </div>
+                      <input class='templates__input' type="text" placeholder="Search...">
+                  </nav>
 
 
-                <div class="templates__body"></div>
+                  <div class="templates__body"></div>
 
 
-                <footer class="categories__footer">
-                    <div class="categories__footer">
-                        <div class="categories__footer-template">
-                            <h3 class="categories__footer-title">Empty Template</h3>
-                            <div class="categories__footer-spacer"></div>
-                            <button class="categories__footer-edit"></button>
-                        </div>
-                    </div>
-                </footer>
+                  <footer class="categories__footer">
+                      <div class="categories__footer">
+                          <div class="categories__footer-template">
+                              <h3 class="categories__footer-title">Empty Template</h3>
+                              <div class="categories__footer-spacer"></div>
+                              <button class="categories__footer-edit"></button>
+                          </div>
+                      </div>
+                  </footer>
 
 
-            </div>
+              </div>
 
-        `
-        categoriesBody.appendChild(templates)
+          `
+          categoriesBody.appendChild(templates)
 
-        const templatesBackBtn = document.querySelector('.templates__back') as HTMLElement;
-        const addNewTemplateBtn = document.querySelector('.templates__new_template') as HTMLElement;
-        const templatesTitle = document.querySelector('.templates__title') as HTMLElement;
-        const categoriesFooterTitle = document.querySelector('.categories__footer-title') as HTMLElement;
-        categoriesFooterTitle.innerText = `${btnObject.title} Template`
-        templatesTitle.innerText = categoryObj.title;
-        templates.id = categoryObj.id
-        const templatesBody = document.querySelector('.templates__body') as HTMLElement;
+          const templatesBackBtn = document.querySelector('.templates__back') as HTMLElement;
+          const addNewTemplateBtn = document.querySelector('.templates__new_template') as HTMLElement;
+          const templatesTitle = document.querySelector('.templates__title') as HTMLElement;
+          const categoriesFooterTitle = document.querySelector('.categories__footer-title') as HTMLElement;
+          categoriesFooterTitle.innerText = `${btnObject.title} Template`
+          templatesTitle.innerText = categoryObj.title;
+          templates.id = categoryObj.id
+          const templatesBody = document.querySelector('.templates__body') as HTMLElement;
 
 
-        // back btn
-        templatesBackBtn.addEventListener('click', () => {
-            templates.remove();
-        })
+          // back btn
+          templatesBackBtn.addEventListener('click', () => {
+              templates.remove();
+          })
 
-        // add new template buttons
-        addNewTemplateBtn.addEventListener('click', () => {
-            const templateObj: TemplateObj = {
-                id: (Date.now()).toString(),
-                title: 'New Template',
-                categoryID: (categoryObj.id).toString(),
+          // add new template buttons
+          addNewTemplateBtn.addEventListener('click', () => {
+              const templateObj: TemplateObj = {
+                  id: (Date.now()).toString(),
+                  title: 'New Template',
+                  categoryID: (categoryObj.id).toString(),
+                  text: `Hi #user_name#!\n<br>\nThank you for contacting our *brand* Support Team!\n<br>\n<br>\nIn order to receive a prompt response, we also advise you to contact live chat on our website. Our agents work 24/7 for you every day.\n<br>\nSincerely,\n<br>*brand* Support team`
+              }
+
+              buttonsArray.forEach((item:any) => {
+                  item.categories.forEach((category:any) => {
+                      if(category.id === templateObj.categoryID) {
+                          category.templates.push(templateObj)
+                          localStorage.setItem('langs', JSON.stringify(buttonsArray))
+                          console.log(buttonsArray)
+                      }
+                  })
+              })
+              
+              createTemplate(templateObj,templatesBody)
+
+          })
+
+          // create button
+          function createTemplate(templateObj: TemplateObj,parent: HTMLElement ) {
+              // create main button
+              const newButton = document.createElement('div')
+              parent.appendChild(newButton)
+              const newButtonTitle = document.createElement('p')
+              newButtonTitle.classList.add('lica-btn__title')
+              newButtonTitle.innerText = templateObj.title;
+              newButton.title = templateObj.title;
+              newButton.appendChild(newButtonTitle)
+              newButton.id = templateObj.id;
+              newButton.classList.add('lica-btn')
+
+              //open modal for templates
+              createEditBtnTemplate(templateObj,newButton)
+              function createEditBtnTemplate(templateObj: TemplateObj, parent: HTMLElement) {
+                  const editBtn = document.createElement('button')
+                  editBtn.classList.add('lica-btn__edit')
+                  parent.appendChild(editBtn)
+
+                  editBtn.addEventListener('click', (e) => {
+                      e.stopPropagation();
+                      
+                      const modal = document.createElement('div')
+                      modal.id = templateObj.id;
+                      modal.classList.add('lica-modalTemplate')
+                      parentMain.appendChild(modal)
+                      modal.innerHTML = `
+                      <div class='lica-modalTemplate'>
+                          <div class='lica-modalContent'>
+                              <div class='lica-modalNav'>
+                                  <input class='lica-modalTemplateName' placeholder='Template name...'>
+                                  <button class='lica-modalSave'>Save</button>
+                                  <button class='lica-modalCancel'>Cancel</button>
+                              </div>
+                                  
+                              <div class='lica-modalBody'>
+                                  <textarea class='lica-modalText' cols="50" rows="20" placeholder="Ваш шаблон / Your template goes here..." ></textarea>
+                                  <div class="lica-modalInstruction">
+                                  <ol class='lica-modalInstructionRU'>
+                                      <li><span class='highlight'>#user_name#</span class='highlight'> - заменится на имя игрока</li>
+                                      <li>Вставить <span class='highlight'>&lt;br&gt;</span class='highlight'> для пробелов. </li>
+                                      <li><span class='highlight'>*brand*</span class='highlight'> - заменится на бренд с которого пришло письмо</li>
+                                  </ol>
+                                  <ol class='lica-modalInstructionEN'>
+                                      <li><span class='highlight'>#user_name#</span class='highlight'> - will be replaced with the player's name</li>
+                                      <li>Insert <span class='highlight'>&lt;br&gt;</span class='highlight'> for spaces. </li>
+                                      <li><span class='highlight'>*brand*</span class='highlight'> - will be replaced with the brand of the incoming letter.</li>
+                                  </ol>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      `
+                      //modal variables
+                      const modalTemplate = document.querySelector('.lica-modalTemplate') as HTMLDivElement;
+                      const modalContent = document.querySelector('.lica-modalContent') as HTMLDivElement;
+                      const modalTemplateName = document.querySelector('.lica-modalTemplateName') as HTMLInputElement
+                      const modalSave = document.querySelector('.lica-modalSave') as HTMLElement
+                      const modalCancel = document.querySelector('.lica-modalCancel') as HTMLElement
+                      const modalText = document.querySelector('.lica-modalText') as HTMLTextAreaElement;
+                      
+                      //close modal when clicked outsidee
+                      modalTemplate.addEventListener('mousedown', (e:MouseEvent) => {
+                          const computedStyle = window.getComputedStyle(modalContent)
+                          if(modalContent.contains(e.target as Node)) {
+                          } else {
+                              modal.remove();
+                          }
+                      })
+
+                        
+                      // cancel button
+                      modalCancel.addEventListener('click', (e) => {
+                          modal.remove();
+                      })
+
+                      // save button
+                      modalSave.addEventListener('click', (e) => {
+                          e.stopPropagation();
+                          templateObj.title = modalTemplateName.value;
+                          templateObj.text = modalText.value;
+                          newButtonTitle.innerText = modalTemplateName.value; 
+                          console.log(templateObj)
+                          localStorage.setItem('langs', JSON.stringify(buttonsArray))
+                          console.log(buttonsArray)
+
+                          modalTemplateName.value = 'Saved!'
+                          modalText.value = 'Saved!'
+
+                          setTimeout(() => {
+                              modalTemplateName.value = templateObj.title;
+                              modalText.value = templateObj.text;  
+                          }, 600);
+                      })
+
+                      // render saved template name/text on open of modal
+                      buttonsArray.forEach((item:any) => {
+                          item.categories.forEach((category:any) => {
+                              category.templates.forEach((template:any) => {
+                                  if(template.id === modal.id) {
+                                      modalTemplateName.value = templateObj.title;
+                                      modalText.value = templateObj.text;
+
+                                  }
+                              })
+                          })
+                      })
+                  })
+              }
+
+
+              // create delete btn
+              createDeleteBtnCategories(newButton)
+              function createDeleteBtnCategories(parent: HTMLElement) {
+                  const deleteBtn = document.createElement('button')
+                  deleteBtn.classList.add('lica-btn__delete')
+                  parent.appendChild(deleteBtn) 
+
+                  deleteBtn.addEventListener('click', (e) => {
+                      e.stopPropagation();
+
+                      // change buttons to accept and cancel
+                      buttonsChange(newButton)
+                      function buttonsChange(parent:HTMLElement) {
+                          const btnEdit = parent.querySelector('.lica-btn__edit') as HTMLElement
+                          const btnDelete = parent.querySelector('.lica-btn__delete') as HTMLElement
+
+
+                          const acceptBtn = document.createElement('button')
+                          acceptBtn.classList.add('lica-btn__accept')
+                          btnEdit.replaceWith(acceptBtn)
+
+                          const cancelBtn = document.createElement('button')
+                          cancelBtn.classList.add('lica-btn__cancel')
+                          btnDelete.replaceWith(cancelBtn)
+
+                          //accept
+                          acceptBtn.addEventListener('click', (e:MouseEvent) => {
+                              e.stopPropagation();
+                              const parent = e.currentTarget as HTMLElement;
+                              // loop over languages. item = langauge
+                              buttonsArray.forEach((item:any) => { 
+                                  // loop over categoris. category = category
+                                  item.categories.forEach((category:any) => {
+                                      // loop over templates. template = template
+                                      category.templates.forEach((template:any,index:any) => {
+                                          if(template.id === parent.parentElement!.id) {
+                                              category.templates.splice(index, 1)
+                                              console.log(buttonsArray)
+                                              parent.parentElement!.remove()
+                                              localStorage.setItem('langs', JSON.stringify(buttonsArray))
+                                          }
+                                      })
+                                          
+                                  })
+                              })
+                          })
+
+                          //cancel
+                          cancelBtn.addEventListener('click', (e) => {
+                              e.stopPropagation();
+                              acceptBtn.replaceWith(btnEdit)
+                              cancelBtn.replaceWith(btnDelete)
+                          })
+                      }
+                  })
+              }
+
+
+
+              // insert text in textarea when template is clicked;
+              newButton.addEventListener('click', () => {
+                  //function to insert template
+                  insertTemplate(templateObj)
+                  function insertTemplate(templateObj:TemplateObj) {
+                          let brand = document.querySelector(
+                              '#page-wrapper > div > div > section > div > main > div.thread-details > div > div:nth-child(2) > div > div:nth-child(2) > b'
+                          )?.nextElementSibling?.innerHTML as any;
+
+                          let word = 'brand';
+                          let pattern = new RegExp('\\*' + word + '\\*', 'g');
+                          const openMail = document.querySelector(
+                          '#page-wrapper > div > div > section > div > main > div.reply > p'
+                          ) as HTMLButtonElement;
+                          openMail.click();
+                          async function openEditor() {
+                              const sourceBtn = document.getElementById('cke_39') as HTMLElement;
+                              sourceBtn.click();
+                              await delay(100);
+                              const textArea = document.querySelector(
+                              '.cke_source.cke_reset.cke_enable_context_menu.cke_editable.cke_editable_themed.cke_contents_ltr'
+                              ) as HTMLTextAreaElement;
+                              textArea.value = templateObj.text;
+                              textArea.value = textArea.value.replace(pattern, brand);
+                              await delay(100);
+                              sourceBtn.click();
+                              console.log('Finished!');
+                          }
+                          function delay(ms:number) {
+                              return new Promise((resolve) => setTimeout(resolve, ms));
+                          }
+                          openEditor();
+                  } 
+              })
+
+          }
+
+          // render templates for categories - lvl 3
+          renderTemplates(categoryObj, templatesBody);
+          function renderTemplates(categoryObj: CategoryObj, parent: HTMLElement) {
+              const category = buttonsArray
+              .flatMap((item:any) => item.categories)
+              .find((category:any) => category.id === categoryObj.id);
+          
+              if (category) {
+              category.templates.forEach((template: any) => {
+                  createTemplate(template, parent);
+              });
+              }
+          }
+
+          // insert template lvl2 (3)
+          const categoriesFooterTemplate = document.querySelector('.categories__footer-template') as HTMLElement
+          const categoriesEditBtn = document.querySelector('.categories__footer-edit') as HTMLElement
+
+          // save a template
+          categoriesEditBtn.addEventListener('click', (e) => {
+            // save new template
+            openEmptyTemplateLvl2Edit(btnObject)
+            function openEmptyTemplateLvl2Edit(btnObject: BtnObject) {
+              const emptyTemplateObj: TemplateObj = {
+                id: btnObject.id,
+                title: btnObject.title,
+                categoryID: 'none',
                 text: `Hi #user_name#!\n<br>\nThank you for contacting our *brand* Support Team!\n<br>\n<br>\nIn order to receive a prompt response, we also advise you to contact live chat on our website. Our agents work 24/7 for you every day.\n<br>\nSincerely,\n<br>*brand* Support team`
             }
+                e.stopPropagation();
+                console.log('emptyTemplate objects is ', emptyTemplateObj)
+                console.log('btnObject  is ', btnObject)
 
-            buttonsArray.forEach((item:any) => {
-                item.categories.forEach((category:any) => {
-                    if(category.id === templateObj.categoryID) {
-                        category.templates.push(templateObj)
-                        localStorage.setItem('langs', JSON.stringify(buttonsArray))
-                        console.log(buttonsArray)
-                    }
-                })
-            })
-            
-            createTemplate(templateObj,templatesBody)
-
-        })
-
-        // create button
-        function createTemplate(templateObj: TemplateObj,parent: HTMLElement ) {
-            // create main button
-            const newButton = document.createElement('div')
-            parent.appendChild(newButton)
-            const newButtonTitle = document.createElement('p')
-            newButtonTitle.classList.add('lica-btn__title')
-            newButtonTitle.innerText = templateObj.title;
-            newButton.title = templateObj.title;
-            newButton.appendChild(newButtonTitle)
-            newButton.id = templateObj.id;
-            newButton.classList.add('lica-btn')
-
-            //open modal for templates
-            createEditBtnTemplate(templateObj,newButton)
-            function createEditBtnTemplate(templateObj: TemplateObj, parent: HTMLElement) {
-                const editBtn = document.createElement('button')
-                editBtn.classList.add('lica-btn__edit')
-                parent.appendChild(editBtn)
-
-                editBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    
-                    const modal = document.createElement('div')
-                    modal.id = templateObj.id;
-                    modal.classList.add('lica-modalTemplate')
-                    parentMain.appendChild(modal)
-                    modal.innerHTML = `
-                    <div class='lica-modalTemplate'>
-                        <div class='lica-modalContent'>
-                            <div class='lica-modalNav'>
-                                <input class='lica-modalTemplateName' placeholder='Template name...'>
-                                <button class='lica-modalSave'>Save</button>
-                                <button class='lica-modalCancel'>Cancel</button>
-                            </div>
-                                
-                            <div class='lica-modalBody'>
-                                <textarea class='lica-modalText' cols="50" rows="20" placeholder="Ваш шаблон / Your template goes here..." ></textarea>
-                                <div class="lica-modalInstruction">
-                                <ol class='lica-modalInstructionRU'>
-                                    <li><span class='highlight'>#user_name#</span class='highlight'> - заменится на имя игрока</li>
-                                    <li>Вставить <span class='highlight'>&lt;br&gt;</span class='highlight'> для пробелов. </li>
-                                    <li><span class='highlight'>*brand*</span class='highlight'> - заменится на бренд с которого пришло письмо</li>
-                                </ol>
-                                <ol class='lica-modalInstructionEN'>
-                                    <li><span class='highlight'>#user_name#</span class='highlight'> - will be replaced with the player's name</li>
-                                    <li>Insert <span class='highlight'>&lt;br&gt;</span class='highlight'> for spaces. </li>
-                                    <li><span class='highlight'>*brand*</span class='highlight'> - will be replaced with the brand of the incoming letter.</li>
-                                </ol>
-                                </div>
+                        
+                const modal = document.createElement('div')
+                modal.id = btnObject.id;
+                modal.classList.add('lica-modalTemplate')
+                parentMain.appendChild(modal)
+                modal.innerHTML = `
+                <div class='lica-modalTemplate'>
+                    <div class='lica-modalContent'>
+                        <div class='lica-modalNav'>
+                            <button class='lica-modalSave'>Save</button>
+                            <button class='lica-modalCancel'>Cancel</button>
+                        </div>
+                            
+                        <div class='lica-modalBody'>
+                            <textarea class='lica-modalText' cols="50" rows="20" placeholder="Ваш шаблон / Your template goes here..." ></textarea>
+                            <div class="lica-modalInstruction">
+                            <ol class='lica-modalInstructionRU'>
+                                <li><span class='highlight'>#user_name#</span class='highlight'> - заменится на имя игрока</li>
+                                <li>Вставить <span class='highlight'>&lt;br&gt;</span class='highlight'> для пробелов. </li>
+                                <li><span class='highlight'>*brand*</span class='highlight'> - заменится на бренд с которого пришло письмо</li>
+                            </ol>
+                            <ol class='lica-modalInstructionEN'>
+                                <li><span class='highlight'>#user_name#</span class='highlight'> - will be replaced with the player's name</li>
+                                <li>Insert <span class='highlight'>&lt;br&gt;</span class='highlight'> for spaces. </li>
+                                <li><span class='highlight'>*brand*</span class='highlight'> - will be replaced with the brand of the incoming letter.</li>
+                            </ol>
                             </div>
                         </div>
                     </div>
-                    `
-                    //modal variables
-                    const modalTemplate = document.querySelector('.lica-modalTemplate') as HTMLDivElement;
-                    const modalContent = document.querySelector('.lica-modalContent') as HTMLDivElement;
-                    const modalTemplateName = document.querySelector('.lica-modalTemplateName') as HTMLInputElement
-                    const modalSave = document.querySelector('.lica-modalSave') as HTMLElement
-                    const modalCancel = document.querySelector('.lica-modalCancel') as HTMLElement
-                    const modalText = document.querySelector('.lica-modalText') as HTMLTextAreaElement;
-                    
-                    //close modal when clicked outsidee
-                    modalTemplate.addEventListener('mousedown', (e:MouseEvent) => {
-                        const computedStyle = window.getComputedStyle(modalContent)
-                        if(modalContent.contains(e.target as Node)) {
-                        } else {
-                            modal.remove();
-                        }
-                    })
+                </div>
+                `
+                //modal variables
+                const modalTemplate = document.querySelector('.lica-modalTemplate') as HTMLDivElement;
+                const modalContent = document.querySelector('.lica-modalContent') as HTMLDivElement;
+                const modalSave = document.querySelector('.lica-modalSave') as HTMLElement
+                const modalCancel = document.querySelector('.lica-modalCancel') as HTMLElement
+                const modalText = document.querySelector('.lica-modalText') as HTMLTextAreaElement;
 
-                      
-                    // cancel button
-                    modalCancel.addEventListener('click', (e) => {
+                //close modal when clicked outsidee
+                modalTemplate.addEventListener('mousedown', (e:MouseEvent) => {
+                    if(modalContent.contains(e.target as Node)) {
+                    } else {
                         modal.remove();
-                    })
-
-                    // save button
-                    modalSave.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        templateObj.title = modalTemplateName.value;
-                        templateObj.text = modalText.value;
-                        newButtonTitle.innerText = modalTemplateName.value; 
-                        console.log(templateObj)
-                        localStorage.setItem('langs', JSON.stringify(buttonsArray))
-                        console.log(buttonsArray)
-
-                        modalTemplateName.value = 'Saved!'
-                        modalText.value = 'Saved!'
-
-                        setTimeout(() => {
-                            modalTemplateName.value = templateObj.title;
-                            modalText.value = templateObj.text;  
-                        }, 600);
-                    })
-
-                    // render saved template name/text on open of modal
-                    buttonsArray.forEach((item:any) => {
-                        item.categories.forEach((category:any) => {
-                            category.templates.forEach((template:any) => {
-                                if(template.id === modal.id) {
-                                    modalTemplateName.value = templateObj.title;
-                                    modalText.value = templateObj.text;
-
-                                }
-                            })
-                        })
-                    })
-                })
-            }
-
-
-            // create delete btn
-            createDeleteBtnCategories(newButton)
-            function createDeleteBtnCategories(parent: HTMLElement) {
-                const deleteBtn = document.createElement('button')
-                deleteBtn.classList.add('lica-btn__delete')
-                parent.appendChild(deleteBtn) 
-
-                deleteBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-
-                    // change buttons to accept and cancel
-                    buttonsChange(newButton)
-                    function buttonsChange(parent:HTMLElement) {
-                        const btnEdit = parent.querySelector('.lica-btn__edit') as HTMLElement
-                        const btnDelete = parent.querySelector('.lica-btn__delete') as HTMLElement
-
-
-                        const acceptBtn = document.createElement('button')
-                        acceptBtn.classList.add('lica-btn__accept')
-                        btnEdit.replaceWith(acceptBtn)
-
-                        const cancelBtn = document.createElement('button')
-                        cancelBtn.classList.add('lica-btn__cancel')
-                        btnDelete.replaceWith(cancelBtn)
-
-                        //accept
-                        acceptBtn.addEventListener('click', (e:MouseEvent) => {
-                            e.stopPropagation();
-                            const parent = e.currentTarget as HTMLElement;
-                            // loop over languages. item = langauge
-                            buttonsArray.forEach((item:any) => { 
-                                // loop over categoris. category = category
-                                item.categories.forEach((category:any) => {
-                                    // loop over templates. template = template
-                                    category.templates.forEach((template:any,index:any) => {
-                                        if(template.id === parent.parentElement!.id) {
-                                            category.templates.splice(index, 1)
-                                            console.log(buttonsArray)
-                                            parent.parentElement!.remove()
-                                            localStorage.setItem('langs', JSON.stringify(buttonsArray))
-                                        }
-                                    })
-                                        
-                                })
-                            })
-                        })
-
-                        //cancel
-                        cancelBtn.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                            acceptBtn.replaceWith(btnEdit)
-                            cancelBtn.replaceWith(btnDelete)
-                        })
                     }
                 })
-            }
 
+                    
+                // cancel button
+                modalCancel.addEventListener('click', (e) => {
+                    modal.remove();
+                })
 
+                // save button
+                modalSave.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    emptyTemplates.forEach((item:any, index:any) => {
+                      if(item.id === emptyTemplateObj.id) {
+                        emptyTemplates.splice(index,1)
+                      }
+                    })
+                    
+                    emptyTemplateObj.text = modalText.value;
+                    emptyTemplates.push(emptyTemplateObj)
+                    localStorage.setItem('emptyTemplates', JSON.stringify(emptyTemplates))
 
-            // insert text in textarea when template is clicked;
-            newButton.addEventListener('click', () => {
-                //function to insert template
-                insertTemplate(templateObj)
-                function insertTemplate(templateObj:TemplateObj) {
-                        let brand = document.querySelector(
-                            '#page-wrapper > div > div > section > div > main > div.thread-details > div > div:nth-child(2) > div > div:nth-child(2) > b'
-                        )?.nextElementSibling?.innerHTML as any;
+                    modalText.value = 'Saved!'
+                    setTimeout(() => {
+                        modalText.value = emptyTemplateObj.text;  
+                    }, 600);
+                })          
 
-                        let word = 'brand';
-                        let pattern = new RegExp('\\*' + word + '\\*', 'g');
-                        const openMail = document.querySelector(
-                        '#page-wrapper > div > div > section > div > main > div.reply > p'
-                        ) as HTMLButtonElement;
-                        openMail.click();
-                        async function openEditor() {
-                            const sourceBtn = document.getElementById('cke_39') as HTMLElement;
-                            sourceBtn.click();
-                            await delay(100);
-                            const textArea = document.querySelector(
-                            '.cke_source.cke_reset.cke_enable_context_menu.cke_editable.cke_editable_themed.cke_contents_ltr'
-                            ) as HTMLTextAreaElement;
-                            textArea.value = templateObj.text;
-                            textArea.value = textArea.value.replace(pattern, brand);
-                            await delay(100);
-                            sourceBtn.click();
-                            console.log('Finished!');
-                        }
-                        function delay(ms:number) {
-                            return new Promise((resolve) => setTimeout(resolve, ms));
-                        }
-                        openEditor();
-                } 
-            })
+                // render template
+                emptyTemplates.forEach((item:any) => {
+                  if(item.id === btnObject.id) {
+                    modalText.value = item.text;
+                  }
+                })
+            };
+          })
 
-        }
+          //insert a templatee
+          categoriesFooterTemplate.addEventListener('click', () => {
+          insertTemplate(btnObject)
+          function insertTemplate(btnObject:BtnObject) {
+              let brand = document.querySelector(
+                  '#page-wrapper > div > div > section > div > main > div.thread-details > div > div:nth-child(2) > div > div:nth-child(2) > b'
+              )?.nextElementSibling?.innerHTML as any;
 
-        // render templates for categories - lvl 3
-        renderTemplates(categoryObj, templatesBody);
-        function renderTemplates(categoryObj: CategoryObj, parent: HTMLElement) {
-            const category = buttonsArray
-            .flatMap((item:any) => item.categories)
-            .find((category:any) => category.id === categoryObj.id);
-        
-            if (category) {
-            category.templates.forEach((template: any) => {
-                createTemplate(template, parent);
-            });
-            }
-        }
+              let word = 'brand';
+              let pattern = new RegExp('\\*' + word + '\\*', 'g');
+              const openMail = document.querySelector(
+              '#page-wrapper > div > div > section > div > main > div.reply > p'
+              ) as HTMLButtonElement;
+              openMail.click();
+              async function openEditor() {
+                  const sourceBtn = document.getElementById('cke_39') as HTMLElement;
+                  sourceBtn.click();
+                  await delay(100);
+                  const textArea = document.querySelector(
+                  '.cke_source.cke_reset.cke_enable_context_menu.cke_editable.cke_editable_themed.cke_contents_ltr'
+                  ) as HTMLTextAreaElement;
+                  emptyTemplates.forEach((item:any) => {
+                    if(item.id === btnObject.id) {
+                      textArea.value = item.text;
+                      textArea.value = textArea.value.replace(pattern, brand);
+                      sourceBtn.click();
+                      console.log('Finished!');
+                    }
+                  })
+                  await delay(100);
+              }
+              function delay(ms:number) {
+                  return new Promise((resolve) => setTimeout(resolve, ms));
+              }
+              openEditor();
+          } 
+        })
         } 
     }
 

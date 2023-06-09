@@ -1143,37 +1143,37 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                 const templates = document.createElement('div');
                 templates.classList.add('templates');
                 templates.innerHTML = `
-        <!-- modal-templates -->
-            <div class="templates">
+          <!-- modal-templates -->
+              <div class="templates">
 
 
-                <nav class="templates__header">
-                    <h2 class="templates__title"></h2>
-                    <div class="templates__buttons">
-                        <button class="templates__back"><< Back</button>
-                        <button class="templates__new_template">Add new template</button>
-                    </div>
-                    <input class='templates__input' type="text" placeholder="Search...">
-                </nav>
+                  <nav class="templates__header">
+                      <h2 class="templates__title"></h2>
+                      <div class="templates__buttons">
+                          <button class="templates__back"><< Back</button>
+                          <button class="templates__new_template">Add new template</button>
+                      </div>
+                      <input class='templates__input' type="text" placeholder="Search...">
+                  </nav>
 
 
-                <div class="templates__body"></div>
+                  <div class="templates__body"></div>
 
 
-                <footer class="categories__footer">
-                    <div class="categories__footer">
-                        <div class="categories__footer-template">
-                            <h3 class="categories__footer-title">Empty Template</h3>
-                            <div class="categories__footer-spacer"></div>
-                            <button class="categories__footer-edit"></button>
-                        </div>
-                    </div>
-                </footer>
+                  <footer class="categories__footer">
+                      <div class="categories__footer">
+                          <div class="categories__footer-template">
+                              <h3 class="categories__footer-title">Empty Template</h3>
+                              <div class="categories__footer-spacer"></div>
+                              <button class="categories__footer-edit"></button>
+                          </div>
+                      </div>
+                  </footer>
 
 
-            </div>
+              </div>
 
-        `;
+          `;
                 categoriesBody.appendChild(templates);
                 const templatesBackBtn = document.querySelector('.templates__back');
                 const addNewTemplateBtn = document.querySelector('.templates__new_template');
@@ -1231,32 +1231,32 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                             modal.classList.add('lica-modalTemplate');
                             parentMain.appendChild(modal);
                             modal.innerHTML = `
-                    <div class='lica-modalTemplate'>
-                        <div class='lica-modalContent'>
-                            <div class='lica-modalNav'>
-                                <input class='lica-modalTemplateName' placeholder='Template name...'>
-                                <button class='lica-modalSave'>Save</button>
-                                <button class='lica-modalCancel'>Cancel</button>
-                            </div>
-                                
-                            <div class='lica-modalBody'>
-                                <textarea class='lica-modalText' cols="50" rows="20" placeholder="Ваш шаблон / Your template goes here..." ></textarea>
-                                <div class="lica-modalInstruction">
-                                <ol class='lica-modalInstructionRU'>
-                                    <li><span class='highlight'>#user_name#</span class='highlight'> - заменится на имя игрока</li>
-                                    <li>Вставить <span class='highlight'>&lt;br&gt;</span class='highlight'> для пробелов. </li>
-                                    <li><span class='highlight'>*brand*</span class='highlight'> - заменится на бренд с которого пришло письмо</li>
-                                </ol>
-                                <ol class='lica-modalInstructionEN'>
-                                    <li><span class='highlight'>#user_name#</span class='highlight'> - will be replaced with the player's name</li>
-                                    <li>Insert <span class='highlight'>&lt;br&gt;</span class='highlight'> for spaces. </li>
-                                    <li><span class='highlight'>*brand*</span class='highlight'> - will be replaced with the brand of the incoming letter.</li>
-                                </ol>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    `;
+                      <div class='lica-modalTemplate'>
+                          <div class='lica-modalContent'>
+                              <div class='lica-modalNav'>
+                                  <input class='lica-modalTemplateName' placeholder='Template name...'>
+                                  <button class='lica-modalSave'>Save</button>
+                                  <button class='lica-modalCancel'>Cancel</button>
+                              </div>
+                                  
+                              <div class='lica-modalBody'>
+                                  <textarea class='lica-modalText' cols="50" rows="20" placeholder="Ваш шаблон / Your template goes here..." ></textarea>
+                                  <div class="lica-modalInstruction">
+                                  <ol class='lica-modalInstructionRU'>
+                                      <li><span class='highlight'>#user_name#</span class='highlight'> - заменится на имя игрока</li>
+                                      <li>Вставить <span class='highlight'>&lt;br&gt;</span class='highlight'> для пробелов. </li>
+                                      <li><span class='highlight'>*brand*</span class='highlight'> - заменится на бренд с которого пришло письмо</li>
+                                  </ol>
+                                  <ol class='lica-modalInstructionEN'>
+                                      <li><span class='highlight'>#user_name#</span class='highlight'> - will be replaced with the player's name</li>
+                                      <li>Insert <span class='highlight'>&lt;br&gt;</span class='highlight'> for spaces. </li>
+                                      <li><span class='highlight'>*brand*</span class='highlight'> - will be replaced with the brand of the incoming letter.</li>
+                                  </ol>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      `;
                             //modal variables
                             const modalTemplate = document.querySelector('.lica-modalTemplate');
                             const modalContent = document.querySelector('.lica-modalContent');
@@ -1397,6 +1397,129 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                         });
                     }
                 }
+                // insert template lvl2 (3)
+                const categoriesFooterTemplate = document.querySelector('.categories__footer-template');
+                const categoriesEditBtn = document.querySelector('.categories__footer-edit');
+                // save a template
+                categoriesEditBtn.addEventListener('click', (e) => {
+                    // save new template
+                    openEmptyTemplateLvl2Edit(btnObject);
+                    function openEmptyTemplateLvl2Edit(btnObject) {
+                        const emptyTemplateObj = {
+                            id: btnObject.id,
+                            title: btnObject.title,
+                            categoryID: 'none',
+                            text: `Hi #user_name#!\n<br>\nThank you for contacting our *brand* Support Team!\n<br>\n<br>\nIn order to receive a prompt response, we also advise you to contact live chat on our website. Our agents work 24/7 for you every day.\n<br>\nSincerely,\n<br>*brand* Support team`
+                        };
+                        e.stopPropagation();
+                        console.log('emptyTemplate objects is ', emptyTemplateObj);
+                        console.log('btnObject  is ', btnObject);
+                        const modal = document.createElement('div');
+                        modal.id = btnObject.id;
+                        modal.classList.add('lica-modalTemplate');
+                        parentMain.appendChild(modal);
+                        modal.innerHTML = `
+                <div class='lica-modalTemplate'>
+                    <div class='lica-modalContent'>
+                        <div class='lica-modalNav'>
+                            <button class='lica-modalSave'>Save</button>
+                            <button class='lica-modalCancel'>Cancel</button>
+                        </div>
+                            
+                        <div class='lica-modalBody'>
+                            <textarea class='lica-modalText' cols="50" rows="20" placeholder="Ваш шаблон / Your template goes here..." ></textarea>
+                            <div class="lica-modalInstruction">
+                            <ol class='lica-modalInstructionRU'>
+                                <li><span class='highlight'>#user_name#</span class='highlight'> - заменится на имя игрока</li>
+                                <li>Вставить <span class='highlight'>&lt;br&gt;</span class='highlight'> для пробелов. </li>
+                                <li><span class='highlight'>*brand*</span class='highlight'> - заменится на бренд с которого пришло письмо</li>
+                            </ol>
+                            <ol class='lica-modalInstructionEN'>
+                                <li><span class='highlight'>#user_name#</span class='highlight'> - will be replaced with the player's name</li>
+                                <li>Insert <span class='highlight'>&lt;br&gt;</span class='highlight'> for spaces. </li>
+                                <li><span class='highlight'>*brand*</span class='highlight'> - will be replaced with the brand of the incoming letter.</li>
+                            </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+                        //modal variables
+                        const modalTemplate = document.querySelector('.lica-modalTemplate');
+                        const modalContent = document.querySelector('.lica-modalContent');
+                        const modalSave = document.querySelector('.lica-modalSave');
+                        const modalCancel = document.querySelector('.lica-modalCancel');
+                        const modalText = document.querySelector('.lica-modalText');
+                        //close modal when clicked outsidee
+                        modalTemplate.addEventListener('mousedown', (e) => {
+                            if (modalContent.contains(e.target)) {
+                            }
+                            else {
+                                modal.remove();
+                            }
+                        });
+                        // cancel button
+                        modalCancel.addEventListener('click', (e) => {
+                            modal.remove();
+                        });
+                        // save button
+                        modalSave.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            emptyTemplates.forEach((item, index) => {
+                                if (item.id === emptyTemplateObj.id) {
+                                    emptyTemplates.splice(index, 1);
+                                }
+                            });
+                            emptyTemplateObj.text = modalText.value;
+                            emptyTemplates.push(emptyTemplateObj);
+                            localStorage.setItem('emptyTemplates', JSON.stringify(emptyTemplates));
+                            modalText.value = 'Saved!';
+                            setTimeout(() => {
+                                modalText.value = emptyTemplateObj.text;
+                            }, 600);
+                        });
+                        // render template
+                        emptyTemplates.forEach((item) => {
+                            if (item.id === btnObject.id) {
+                                modalText.value = item.text;
+                            }
+                        });
+                    }
+                    ;
+                });
+                //insert a templatee
+                categoriesFooterTemplate.addEventListener('click', () => {
+                    insertTemplate(btnObject);
+                    function insertTemplate(btnObject) {
+                        var _a, _b;
+                        let brand = (_b = (_a = document.querySelector('#page-wrapper > div > div > section > div > main > div.thread-details > div > div:nth-child(2) > div > div:nth-child(2) > b')) === null || _a === void 0 ? void 0 : _a.nextElementSibling) === null || _b === void 0 ? void 0 : _b.innerHTML;
+                        let word = 'brand';
+                        let pattern = new RegExp('\\*' + word + '\\*', 'g');
+                        const openMail = document.querySelector('#page-wrapper > div > div > section > div > main > div.reply > p');
+                        openMail.click();
+                        function openEditor() {
+                            return __awaiter(this, void 0, void 0, function* () {
+                                const sourceBtn = document.getElementById('cke_39');
+                                sourceBtn.click();
+                                yield delay(100);
+                                const textArea = document.querySelector('.cke_source.cke_reset.cke_enable_context_menu.cke_editable.cke_editable_themed.cke_contents_ltr');
+                                emptyTemplates.forEach((item) => {
+                                    if (item.id === btnObject.id) {
+                                        textArea.value = item.text;
+                                        textArea.value = textArea.value.replace(pattern, brand);
+                                        sourceBtn.click();
+                                        console.log('Finished!');
+                                    }
+                                });
+                                yield delay(100);
+                            });
+                        }
+                        function delay(ms) {
+                            return new Promise((resolve) => setTimeout(resolve, ms));
+                        }
+                        openEditor();
+                    }
+                });
             }
         }
         //empty template lvl 1 logic

@@ -839,6 +839,18 @@
                             parent.remove();
                         }
                     })
+                    emptyTemplates.forEach((item:any,index:any) => {
+                      if(item.id === btnObject.id) {
+                        emptyTemplates.splice(index,1)
+                        localStorage.setItem('emptyTemplates', JSON.stringify(emptyTemplates))
+                      }
+                    })
+
+                    emptyTemplates.forEach((item:any, index:any) => {
+                      if(item.id === btnObject.id) {
+                        emptyTemplates.splice(index,1)
+                      }
+                    })
                 })
                 cancelBtn.addEventListener('click', (e) => {
                     e.stopPropagation();

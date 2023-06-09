@@ -792,6 +792,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                                 parent.remove();
                             }
                         });
+                        emptyTemplates.forEach((item, index) => {
+                            if (item.id === btnObject.id) {
+                                emptyTemplates.splice(index, 1);
+                                localStorage.setItem('emptyTemplates', JSON.stringify(emptyTemplates));
+                            }
+                        });
+                        emptyTemplates.forEach((item, index) => {
+                            if (item.id === btnObject.id) {
+                                emptyTemplates.splice(index, 1);
+                            }
+                        });
                     });
                     cancelBtn.addEventListener('click', (e) => {
                         e.stopPropagation();

@@ -585,5 +585,8 @@
     left: 30px;
   }
 }
+.hide {
+  display: none;
+}
 
 /*# sourceMappingURL=main.css.map */

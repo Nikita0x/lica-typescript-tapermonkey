@@ -606,6 +606,9 @@
         left: 30px;
       }
     }
+    .hide {
+      display: none;
+    }
     
     /*# sourceMappingURL=main.css.map */
     
@@ -656,6 +659,7 @@
     const licaBody = document.querySelector('.container__body') as HTMLElement;
     const addNewLanguageBtn = document.querySelector('.container__header-buttons-new') as HTMLButtonElement;
     const spamBtn = document.querySelector('.container__header-buttons-spam') as HTMLButtonElement;
+    const mainInput = document.querySelector('.container__header-input') as HTMLInputElement;
 
 
 
@@ -1816,10 +1820,26 @@
     })
 
 
+    // search for input
+    mainInput?.addEventListener('keyup', (e) => {
+      let val = mainInput.value.trim().toLowerCase();
+      let buttons = document.querySelectorAll('.lica-btn')
+      if(val !== '') {
+        buttons.forEach((item:any) => {
+          if(item.innerText.toLowerCase().search(val) === -1) {
+            item.classList.add('hide')
+          } else {
+            item.classList.remove('hide')
+          }
+        })
+      } else {
+        buttons.forEach((item:any) => {
+          item.classList.remove('hide')
+        })
+      }
+    })
 
-
-    console.log(emptyTemplates)
-
+    console.log(buttonsArray)
 
 
 }, 2000);})();

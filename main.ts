@@ -1313,7 +1313,7 @@
           templatesTitle.innerText = categoryObj.title;
           templates.id = categoryObj.id
           const templatesBody = document.querySelector('.templates__body') as HTMLElement;
-
+          const templatesInput = document.querySelector('.templates__input') as HTMLInputElement;
 
           // back btn
           templatesBackBtn.addEventListener('click', () => {
@@ -1700,7 +1700,26 @@
               }
               openEditor();
           } 
-        })
+           })
+
+           // search for inputt
+          templatesInput?.addEventListener('keyup', (e) => {
+            let val = templatesInput.value.trim().toLowerCase();
+            let buttons = document.querySelectorAll('.lica-btn')
+            if(val !== '') {
+              buttons.forEach((item:any) => {
+                if(item.innerText.toLowerCase().search(val) === -1) {
+                  item.classList.add('hide')
+                } else {
+                  item.classList.remove('hide')
+                }
+              })
+            } else {
+              buttons.forEach((item:any) => {
+                item.classList.remove('hide')
+              })
+            }
+          })
         } 
     }
 

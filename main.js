@@ -1208,6 +1208,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                 templatesTitle.innerText = categoryObj.title;
                 templates.id = categoryObj.id;
                 const templatesBody = document.querySelector('.templates__body');
+                const templatesInput = document.querySelector('.templates__input');
                 // back btn
                 templatesBackBtn.addEventListener('click', () => {
                     templates.remove();
@@ -1543,6 +1544,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                             return new Promise((resolve) => setTimeout(resolve, ms));
                         }
                         openEditor();
+                    }
+                });
+                // search for inputt
+                templatesInput === null || templatesInput === void 0 ? void 0 : templatesInput.addEventListener('keyup', (e) => {
+                    let val = templatesInput.value.trim().toLowerCase();
+                    let buttons = document.querySelectorAll('.lica-btn');
+                    if (val !== '') {
+                        buttons.forEach((item) => {
+                            if (item.innerText.toLowerCase().search(val) === -1) {
+                                item.classList.add('hide');
+                            }
+                            else {
+                                item.classList.remove('hide');
+                            }
+                        });
+                    }
+                    else {
+                        buttons.forEach((item) => {
+                            item.classList.remove('hide');
+                        });
                     }
                 });
             }

@@ -667,10 +667,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         console.log(`buttonsArray:`, buttonsArray);
         let emptyTemplateLvl1Array = JSON.parse(localStorage.getItem('template1') || '[]');
         let emptyTemplates = JSON.parse(localStorage.getItem('emptyTemplates') || '[]');
-        // spam button
-        spamBtn.addEventListener('click', () => {
-            console.log(buttonsArray);
-        });
         // Add new language - listener
         addNewLanguageBtn.addEventListener('click', () => {
             const btnObject = {
@@ -1703,6 +1699,70 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                     item.classList.remove('hide');
                 });
             }
+        });
+        // spam logic
+        spamBtn.addEventListener('click', () => {
+            //open tags menu
+            const openTags = document.querySelector("#page-wrapper > div > div > section > div > main > div.thread-details > div > div:nth-child(3) > div > div:nth-child(1) > div > img");
+            openTags.click();
+            //grab a node list of all menus
+            const tagsNodeList = document.querySelectorAll('.el-popper.is-pure.is-light.el-select__popper'); //[1] - Статус, [3] -  Категория, [4] - Тема, [5] - Под тема
+            setTimeout(() => {
+                //select Categories
+                const categoriesList = tagsNodeList[3].querySelectorAll('.el-select-dropdown__item');
+                function selectCategory(categoryTitle) {
+                    categoriesList.forEach((item) => {
+                        if (item.innerText.includes(categoryTitle)) {
+                            const element = item;
+                            setTimeout(() => {
+                                element.click();
+                            }, 100);
+                        }
+                    });
+                }
+                selectCategory('Входящие');
+                //select Topics
+                const topicsList = tagsNodeList[4].querySelectorAll('.el-select-dropdown__item');
+                function selectTopic(topicTitle) {
+                    topicsList.forEach((item) => {
+                        if (item.innerText.includes(topicTitle)) {
+                            const element = item;
+                            setTimeout(() => {
+                                element.click();
+                            }, 100);
+                        }
+                    });
+                }
+                selectTopic('Другое');
+                //select Sub Topics
+                const subTopicsList = tagsNodeList[5].querySelectorAll('.el-select-dropdown__item');
+                function selectSubTopic(subTopicTitle) {
+                    subTopicsList.forEach((item) => {
+                        if (item.innerText.includes(subTopicTitle)) {
+                            const element = item;
+                            setTimeout(() => {
+                                element.click();
+                            }, 100);
+                        }
+                    });
+                }
+                selectSubTopic('Спам');
+            }, 300);
+            //promise function
+            // function selectCategories(categoryTitle:string) {
+            //   return new Promise ((resolve,reject) => {
+            //     categoriesList.forEach((item:any) => {
+            //       if(item.innerText.includes(categoryTitle)) {
+            //         const element = item as HTMLElement;
+            //         setTimeout(() => {
+            //           element.click();
+            //           resolve('category selected')
+            //         }, 200);
+            //       }
+            //   })
+            //   })
+            // }
+            // selectCategories('Входящие')
         });
     }, 2000);
 })();

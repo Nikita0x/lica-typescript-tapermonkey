@@ -936,6 +936,7 @@
         categoriesFooterTitle.innerText = `${btnObject.title} Template`
         categories.id = btnObject.id
         const categoriesBody = document.querySelector('.categories__body') as HTMLElement;
+        const categoriesInput = document.querySelector('.categories__input') as HTMLInputElement;
 
 
         // back btn
@@ -1230,7 +1231,24 @@
 
 
 
-
+          // search for inputt
+          categoriesInput?.addEventListener('keyup', (e) => {
+            let val = categoriesInput.value.trim().toLowerCase();
+            let buttons = document.querySelectorAll('.lica-btn')
+            if(val !== '') {
+              buttons.forEach((item:any) => {
+                if(item.innerText.toLowerCase().search(val) === -1) {
+                  item.classList.add('hide')
+                } else {
+                  item.classList.remove('hide')
+                }
+              })
+            } else {
+              buttons.forEach((item:any) => {
+                item.classList.remove('hide')
+              })
+            }
+          })
 
 
         
@@ -1838,8 +1856,6 @@
         })
       }
     })
-
-    console.log(buttonsArray)
 
 
 }, 2000);})();

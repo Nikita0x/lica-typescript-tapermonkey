@@ -1873,75 +1873,119 @@
 
     // spam logic
     spamBtn.addEventListener('click', () => {
-      //open tags menu
-      const openTags = document.querySelector("#page-wrapper > div > div > section > div > main > div.thread-details > div > div:nth-child(3) > div > div:nth-child(1) > div > img") as HTMLButtonElement;
-      openTags.click();
+
+
       //grab a node list of all menus
       const tagsNodeList = document.querySelectorAll('.el-popper.is-pure.is-light.el-select__popper') //[1] - Статус, [3] -  Категория, [4] - Тема, [5] - Под тема
 
-      setTimeout(() => {
+
          //select Categories
       const categoriesList = tagsNodeList[3].querySelectorAll('.el-select-dropdown__item');
-      function selectCategory(categoryTitle:string) {
-        categoriesList.forEach((item:any) => {
-          if(item.innerText.includes(categoryTitle)) {
-            const element = item as HTMLElement;
-            setTimeout(() => {
-              element.click();
-            }, 100);
-          }
-      })
+
+
+
+
+
+      
+      
+      function openTagss(){
+        return new Promise<void>((resolve,reject) => {
+          //open tags menu
+          const openTags = document.querySelector("#page-wrapper > div > div > section > div > main > div.thread-details > div > div:nth-child(3) > div > div:nth-child(1) > div > img") as HTMLButtonElement;
+          openTags.click();
+          setTimeout(() => {
+            console.log('tags opened - promise finished') 
+            return resolve()
+          }, 420);
+        })
       }
-      selectCategory('Входящие')
-
-      //select Topics
-      const topicsList = tagsNodeList[4].querySelectorAll('.el-select-dropdown__item');
-      function selectTopic(topicTitle:string) {
-        topicsList.forEach((item:any) => {
-          if(item.innerText.includes(topicTitle)) {
-            const element = item as HTMLElement;
-            setTimeout(() => {
-              element.click();
-            }, 100);
-          }
-      })
-      }
-      selectTopic('Другое')
-
-      //select Sub Topics
-      const subTopicsList = tagsNodeList[5].querySelectorAll('.el-select-dropdown__item');
-      function selectSubTopic(subTopicTitle:string) {
-        subTopicsList.forEach((item:any) => {
-          if(item.innerText.includes(subTopicTitle)) {
-            const element = item as HTMLElement;
-            setTimeout(() => {
-              element.click();
-            }, 100);
-          }
-      })
-      }
-      selectSubTopic('Спам')
-      }, 300);
-     
-
-
       //promise function
 
-      // function selectCategories(categoryTitle:string) {
-      //   return new Promise ((resolve,reject) => {
-      //     categoriesList.forEach((item:any) => {
-      //       if(item.innerText.includes(categoryTitle)) {
-      //         const element = item as HTMLElement;
-      //         setTimeout(() => {
-      //           element.click();
-      //           resolve('category selected')
-      //         }, 200);
-      //       }
-      //   })
-      //   })
-      // }
-      // selectCategories('Входящие')
+      function selectCategories(categoryTitle:string) {
+        return new Promise<void> ((resolve,reject) => {
+          const element = tagsNodeList[3] as HTMLElement
+          element.style.display = 'block';
+          const categories = tagsNodeList[3].querySelectorAll('.el-select-dropdown__item')
+          // select "Входящие"
+          categories.forEach(item => {
+            const el = item as HTMLElement;
+            if(el.innerText.includes(categoryTitle)) {
+              el.click();
+              setTimeout(() => {
+                element.style.display = 'none';
+                console.log('selectCategories - resolved')
+                return resolve()
+                }, 420);
+            }
+        })
+        })
+      }
+
+      function selectTopics(topicTitle:string) {
+        return new Promise<void> ((resolve,reject) => {
+          const element = tagsNodeList[4] as HTMLElement
+          element.style.display = 'block';
+          const topics = tagsNodeList[4].querySelectorAll('.el-select-dropdown__item')
+          // select "Другое"
+          topics.forEach(item => {
+            const el = item as HTMLElement;
+            if(el.innerText.includes(topicTitle)) {
+              el.click();
+              setTimeout(() => {
+                  element.style.display = 'none';
+                  console.log('selectTopics - resolved')
+                  return resolve()
+                }, 420);
+            }
+        })
+        })
+      }
+
+      function selectSubtopics(subtopicTitle:string) {
+        return new Promise<void> ((resolve,reject) => {
+          const element = tagsNodeList[5] as HTMLElement
+          element.style.display = 'block';
+          const subtopics = tagsNodeList[5].querySelectorAll('.el-select-dropdown__item')
+          // select "Спам"
+          subtopics.forEach(item => {
+            const el = item as HTMLElement;
+            if(el.innerText.includes(subtopicTitle)) {
+              el.click();
+              const accept = document.querySelector("#page-wrapper > div > div > section > div > main > div.thread-details > div > div:nth-child(3) > div > div:nth-child(1) > div > div > i.icon-2x.pointer.text-dark-50.value-icon.flaticon2-check-mark") as HTMLButtonElement;
+              accept.click();
+              setTimeout(() => {
+                  element.style.display = 'none';
+                  console.log('selectSubtopics - resolved')
+                  return resolve()
+                }, 420);
+            }
+        })
+        })
+      }
+
+
+
+        openTagss()
+          .then(() => {
+            console.log('openTags promise -finished')
+            return selectCategories('Входящие')
+          })
+          .then(() => {
+            console.log('selectCategories promise resolved - finished')
+            return selectTopics('Другое')
+          })
+          .then(() => {
+            console.log('selectTopics promise resolved - finished')
+            return selectSubtopics('Спам')
+          })
+          .then(() => {
+            console.log('selectSubtopics - finished')
+          })
+
+
     })
+
+    
 
 
 }, 2000);})();

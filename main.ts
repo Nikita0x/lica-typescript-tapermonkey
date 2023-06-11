@@ -18,6 +18,15 @@
     const styleElement = document.createElement('style');
     styleElement.type = 'text/css';
     document.head.appendChild(styleElement);
+    // Create the link element for bootstrap
+    const linkElement = document.createElement('link');
+    linkElement.rel = 'stylesheet';
+    linkElement.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css';
+    linkElement.integrity = 'sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM';
+    linkElement.crossOrigin = 'anonymous';
+
+    // Append the link element to the head
+    document.head.appendChild(linkElement);
     styleElement.textContent = `
     :root {
       --btnMain: #f0f0f0;

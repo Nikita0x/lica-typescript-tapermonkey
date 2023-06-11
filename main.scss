@@ -417,40 +417,7 @@
       overflow-y: scroll;
       padding: 5px 0;
     }
-    /* ==================== templates footer */
-//     .templates__footer {
-//       position: absolute;
-//       bottom: 0px;
-//       left: 0px;
-//       height: 70px;
-//       width: 100%;
-//   }
-//   .templates__footer-template {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     height: 70px;
-//     width: 100%;
-//     background-color: rgb(224, 224, 224);
-//     color: black;
-//     cursor: pointer;
-//     border-radius: 0px 0px 10px 10px;
-//     border: 1px solid rgb(108, 117, 125);
-//     &:hover{
-//       background-color: var(--btnHover);
-//     }
-//     &:active {
-//       background-color: var(--btnActive);
-//     }
-// }
-//   .templates__footer-title {
-//       font-weight: 100;
-//       font-size: 20px;
-//   }
-//   .templates__footer-spacer {
-//       height: 20px;
-//       width: 40px;
-//   }
+    
 
   
     /* Modal template */
@@ -515,11 +482,59 @@
     .lica-modalInstructionRU{
       margin-bottom: 20px;
     }
-    .lica-modalInstructionEN{}
     .highlight {
       color:black;
       font-weight: bold;
     }
+    // toggle button for myToggle
+    .lica-tags-wrapper {
+      position: absolute;
+      top: 40%;
+      right: 34.2%;
+      font-size: 16px;
+      color:rgba(255, 255, 255, 0.8392156863);
+    }
+
+    .toggle {
+      --width: 40px;
+      --height: calc(var(--width) / 2);
+      --border-radius: calc(var(--height) / 2);
+      display:inline-block;
+      cursor: pointer;
+    }
+
+    .toggle__input {
+      display: none;
+    }
+    .toggle__input:checked ~ .toggle__fill{
+      background: #17965b;
+    }
+
+    .toggle__fill{
+      position: relative;
+      width: 70px;
+      height: var(--height);
+      border-radius: var(--border-radius);
+      background: #dddddd;
+      transition: background 0.2s;
+    }
+    .toggle__fill:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: var(--height);
+      width: 30px;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+      border-radius: var(--border-radius);
+      transition: transform 0.2s;
+    }
+
+    .toggle__input:checked ~ .toggle__fill::after {
+      transform: translateX(var(--width));
+    }
+
   /*=========================================Footer====================================== */
   .container__footer {
       position: absolute;

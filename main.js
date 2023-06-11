@@ -471,7 +471,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
       padding: 5px 0;
     }
     
-    /* ==================== templates footer */
     /* Modal template */
     .lica-modalTemplate {
       position: fixed;
@@ -542,6 +541,56 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     .highlight {
       color: black;
       font-weight: bold;
+    }
+    
+    .lica-tags-wrapper {
+      position: absolute;
+      top: 40%;
+      right: 34.2%;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.8392156863);
+    }
+    
+    .toggle {
+      --width: 40px;
+      --height: calc(var(--width) / 2);
+      --border-radius: calc(var(--height) / 2);
+      display: inline-block;
+      cursor: pointer;
+    }
+    
+    .toggle__input {
+      display: none;
+    }
+    
+    .toggle__input:checked ~ .toggle__fill {
+      background: #17965b;
+    }
+    
+    .toggle__fill {
+      position: relative;
+      width: 70px;
+      height: var(--height);
+      border-radius: var(--border-radius);
+      background: #dddddd;
+      transition: background 0.2s;
+    }
+    
+    .toggle__fill:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: var(--height);
+      width: 30px;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+      border-radius: var(--border-radius);
+      transition: transform 0.2s;
+    }
+    
+    .toggle__input:checked ~ .toggle__fill::after {
+      transform: translateX(var(--width));
     }
     
     /*=========================================Footer====================================== */
@@ -627,8 +676,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     .hide {
       display: none;
     }
-    
-    /*# sourceMappingURL=main.css.map */
     
     `;
         //#endregion
@@ -1290,6 +1337,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                                       <li><span class='highlight'>*brand*</span class='highlight'> - will be replaced with the brand of the incoming letter</li>
                                   </ol>
                                   </div>
+
+                                  <div class="lica-tags-wrapper">
+                                  <label class='toggle' for="myToggle"> Select tags?
+                                      <input class="toggle__input" type="checkbox" id="myToggle">
+                                      <div class="toggle__fill"></div>
+                                  </label>
+                              </div>
+
                               </div>
                           </div>
                       </div>

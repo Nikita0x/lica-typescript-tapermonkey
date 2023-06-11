@@ -35,7 +35,7 @@
   .container {
       position: relative;
       top:0;
-      height: 720px;
+      height: 600px;
       width: 355px;
       border-radius: 10px;
       border: 1px solid black;
@@ -44,7 +44,7 @@
   /*=========================================HEADER====================================== */
   .container__header {
       position: absolute;
-      height: 158px;
+      height: 140px;
       width: 100%;
       top: 0px;
       left: 0px;
@@ -100,9 +100,9 @@
       grid-column-gap: 2px;
       row-gap: 2px;
       position: absolute;
-      top: 22%;
+      top: 23%;
       left: 0px;
-      height: 500px;
+      height: 400px;
       overflow-y: scroll;
       width: 100%;
       background-color: rgb(45, 45, 45);
@@ -232,7 +232,7 @@
     .categories__header {
       position: relative;
       top: 0;
-      height: 20%;
+      height: 23%;
       background-color: var(--categoriesColors);
       border-radius: 10px 10px 0px 0px;
       border: 1px solid rgb(108, 117, 125);
@@ -355,7 +355,7 @@
     .templates__header {
       position: relative;
       top: 0;
-      height: 20%;
+      height: 23%;
       background-color: var(--templatesColors);
       border-radius: 10px 10px 0px 0px;
       border: 1px solid rgb(108, 117, 125);
@@ -512,7 +512,6 @@
       position: absolute;
       bottom: 0px;
       left: 0px;
-      height: 70px;
       width: 100%;
   }
   .container__footer-template {

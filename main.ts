@@ -23,349 +23,327 @@
       --btnMain: #f0f0f0;
       --btnHover: #d7d7d7;
       --btnActive: #cacaca;
+  
       --emptyTemplateHover: #bbbbbb;
       --emptyTemplateActive: #979696;
+    
       --btnEditHover: #b0b0b0;
       --btnEditActive: #979797;
+    
       --categoriesColors: #404390;
       --categoriesColorsHover: #333573;
       --categoriesColorsActive: #262856;
+  
       --categoriesEditHover: #1d1e44;
       --categoriesEditActive: #12132e;
+  
+    
       --templatesColors: rgb(39 96 87);
     }
     
     .sidebar {
-      min-width: 365px;
+        min-width: 365px;
     }
-    
     /* */
+    
     .lica-container {
-      position: sticky;
-      top: 5%;
-      width: 355px;
-      transform: translateX(-43.8px);
+        position: sticky;
+        top: 5%;
+        width: 355px;
+        transform: translateX(-43.8px);
     }
     
     .container {
-      position: relative;
-      top: 0;
-      height: 720px;
-      width: 355px;
-      border-radius: 10px;
-      border: 1px solid black;
-      background-color: yellow;
+        position: relative;
+        top:0;
+        height: 600px;
+        width: 355px;
+        border-radius: 10px;
+        border: 1px solid black;
+        background-color: yellow;
     }
-    
     /*=========================================HEADER====================================== */
     .container__header {
-      position: absolute;
-      height: 158px;
-      width: 100%;
-      top: 0px;
-      left: 0px;
-      border-radius: 10px 10px 0px 0px;
-      background-color: rgb(45, 45, 45);
-      color: rgb(242, 242, 242);
-      border: 1px solid rgb(108, 117, 125);
+        position: absolute;
+        height: 140px;
+        width: 100%;
+        top: 0px;
+        left: 0px;
+        border-radius: 10px 10px 0px 0px;
+        background-color: rgb(45, 45, 45);
+        color: rgb(242, 242, 242);
+        border: 1px solid rgb(108, 117, 125);
     }
-    
     .container__header-title {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      font-size: 30px;
-      font-weight: 100;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 30px;
+        font-weight: 100;
     }
-    
     .container__header-buttons {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    
     .container__header-buttons-new {
-      display: flex;
-      width: 50%;
-      height: 40px;
-      font-size: 15px;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
+        display: flex;
+        width: 50%;
+        height: 40px;
+        font-size: 15px;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
     }
-    
     .container__header-buttons-spam {
-      display: flex;
-      width: 50%;
-      height: 40px;
-      font-size: 15px;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
+        display: flex;
+        width: 50%;
+        height: 40px;
+        font-size: 15px;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
     }
-    
     .container__header-input {
-      position: absolute;
-      top: 58%;
-      left: 12%;
-      font-size: 20px;
-      padding: 10px;
+        position: absolute;
+        top: 58%;
+        left: 12%;
+        font-size: 20px;
+        padding: 10px;
     }
     
     /*=========================================Body====================================== */
     .container__body {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: repeat(auto-fill, 70px);
-      grid-column-gap: 2px;
-      row-gap: 2px;
-      position: absolute;
-      top: 22%;
-      left: 0px;
-      height: 500px;
-      overflow-y: scroll;
-      width: 100%;
-      background-color: rgb(45, 45, 45);
-      border: 1px solid rgb(108, 117, 125);
-      padding-top: 2px;
-      padding-bottom: 20px;
-      padding-left: 2px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(auto-fill, 70px);
+        grid-column-gap: 2px;
+        row-gap: 2px;
+        position: absolute;
+        top: 23%;
+        left: 0px;
+        height: 400px;
+        overflow-y: scroll;
+        width: 100%;
+        background-color: rgb(45, 45, 45);
+        border: 1px solid rgb(108, 117, 125);
+        padding-top: 2px;
+        padding-bottom: 20px;
+        padding-left: 2px;
     }
-    
     .lica-btn {
-      display: flex;
-      align-items: center;
-      position: relative;
-      height: 70px;
-      cursor: pointer;
-      background-color: var(--btnMain);
-      border: 1px solid #2d2d2d;
-      border-radius: 5px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
+        display: flex;
+        align-items: center;
+        position: relative;
+        height: 70px;
+        cursor: pointer;
+        background-color: var(--btnMain);
+        border: 1px solid #2d2d2d;
+        border-radius: 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .lica-btn:hover{
+        background-color: var(--btnHover);
+      }
+      .lica-btn:active{
+        background-color: var(--btnActive);
+      }
     
-    .lica-btn:hover {
-      background-color: var(--btnHover);
-    }
+      .lica-btn__title {
+        padding-left: 5px;
+        width: 130px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 16px;
+        color: black;
+      }
+      .lica-btn__edit {
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        right: 13%;
+        background: url('https://svgshare.com/i/tqA.svg');
+        background-position: center;
+        background-size: cover;
+        cursor: default !important;
+      }
+      .lica-btn__edit:hover{
+        background-color: var(--btnEditHover);
+      }
+      .lica-btn__edit:active{
+        background-color: var(--btnEditActive);
+      }
+      .lica-btn__delete{
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        right: 2%;
+        background: url('https://svgshare.com/i/toz.svg');
+        background-position: center;
+        background-size: cover;
+        cursor: default !important;
+      }
+      .lica-btn__delete:hover{
+        background-color: var(--btnEditHover);
+      }
+      .lica-btn__delete:active{
+        background-color: var(--btnEditActive);
+      }
+      
+      
+      .lica-btn__accept{
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        right: 13%;
+        background: url('https://svgshare.com/i/tpr.svg');
+        background-position: center;
+        background-size: cover;
+        cursor: default !important;
+      }
+      
+      .lica-btn__accept:hover{
+        background-color: var(--btnEditHover);
+      }
+      .lica-btn__accept:active{
+        background-color: var(--btnEditActive);
+      }
     
-    .lica-btn:active {
-      background-color: var(--btnActive);
-    }
-    
-    .lica-btn__title {
-      padding-left: 5px;
-      width: 130px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      font-size: 16px;
-      color: black;
-    }
-    
-    .lica-btn__edit {
-      width: 15px;
-      height: 15px;
-      position: absolute;
-      right: 13%;
-      background: url("https://svgshare.com/i/tqA.svg");
-      background-position: center;
-      background-size: cover;
-      cursor: default !important;
-    }
-    
-    .lica-btn__edit:hover {
-      background-color: var(--btnEditHover);
-    }
-    
-    .lica-btn__edit:active {
-      background-color: var(--btnEditActive);
-    }
-    
-    .lica-btn__delete {
-      width: 15px;
-      height: 15px;
-      position: absolute;
-      right: 2%;
-      background: url("https://svgshare.com/i/toz.svg");
-      background-position: center;
-      background-size: cover;
-      cursor: default !important;
-    }
-    
-    .lica-btn__delete:hover {
-      background-color: var(--btnEditHover);
-    }
-    
-    .lica-btn__delete:active {
-      background-color: var(--btnEditActive);
-    }
-    
-    .lica-btn__accept {
-      width: 15px;
-      height: 15px;
-      position: absolute;
-      right: 13%;
-      background: url("https://svgshare.com/i/tpr.svg");
-      background-position: center;
-      background-size: cover;
-      cursor: default !important;
-    }
-    
-    .lica-btn__accept:hover {
-      background-color: var(--btnEditHover);
-    }
-    
-    .lica-btn__accept:active {
-      background-color: var(--btnEditActive);
-    }
-    
-    .lica-btn__cancel {
-      width: 15px;
-      height: 15px;
-      position: absolute;
-      right: 2%;
-      background: url("https://svgshare.com/i/tpT.svg");
-      background-position: center;
-      background-size: cover;
-      cursor: default !important;
-    }
-    
-    .lica-btn__cancel:hover {
-      background-color: var(--btnEditHover);
-    }
-    
-    .lica-btn__cancel:active {
-      background-color: var(--btnEditActive);
-    }
-    
-    .lica-btn__input {
-      position: relative;
-      height: 25px;
-      width: 126px;
-      left: 3px;
-      font-size: 16px;
-    }
-    
-    .lica-btn__input:focus {
+      .lica-btn__cancel{
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        right: 2%;
+        background: url('https://svgshare.com/i/tpT.svg');
+        background-position: center;
+        background-size: cover;
+        cursor: default !important;
+      }
+      .lica-btn__cancel:hover{
+        background-color: var(--btnEditHover);
+      }
+      .lica-btn__cancel:active{
+        background-color: var(--btnEditActive);
+      }
+      
+      .lica-btn__input{
+        position: relative;
+        height: 25px;
+        width: 126px;
+        left: 3px;
+        font-size: 16px;
+      }
+      .lica-btn__input:focus {
       outline: 2px solid #715fde;
-    }
+      }
+      /*======================== modal- categories */
+      .categories {
+        position: absolute;
+        top: 0;
+        left:0;
+        z-index: 1;
+        width: 100%;
+        height: 101%;
+        background-color: #2d2d2d;
+      }
+      .categories__header {
+        position: relative;
+        top: 0;
+        height: 23%;
+        background-color: var(--categoriesColors);
+        border-radius: 10px 10px 0px 0px;
+        border: 1px solid rgb(108, 117, 125);
+      }
+      .categories__title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 30px;
+        font-weight: 100;
+        color: #fff;
+        width: 354px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .categories__buttons {
+        display: flex;
+        justify-content: center;
+        height: 40px;
+        font-size: 15px;
+      }
     
-    /*======================== modal- categories */
-    .categories {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 1;
-      width: 100%;
-      height: 101%;
-      background-color: #2d2d2d;
-    }
+        .categories__back{
+            flex: 1;
+        }
+        .categories__new_category{
+            flex: 1;
+        }
     
-    .categories__header {
-      position: relative;
-      top: 0;
-      height: 20%;
-      background-color: var(--categoriesColors);
-      border-radius: 10px 10px 0px 0px;
-      border: 1px solid rgb(108, 117, 125);
+        .categories__input{ 
+        position: absolute;
+        top: 58%;
+        left: 12%;
+        font-size: 20px;
+        padding: 10px;
     }
-    
-    .categories__title {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      font-size: 30px;
-      font-weight: 100;
-      color: #fff;
-      width: 354px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      
+      .categories__body {
+        display: grid;
+        height: 70%;
+        min-height: 200px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(auto-fill, 70px);
+        gap: 4px;
+        overflow-y: scroll;
+        padding: 5px 0;
+      }
+      /* ============== categories footer ============ */
+      .categories__footer {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        height: 70px;
+        width: 100%;
     }
-    
-    .categories__buttons {
-      display: flex;
-      justify-content: center;
-      height: 40px;
-      font-size: 15px;
-    }
-    
-    .categories__back {
-      flex: 1;
-    }
-    
-    .categories__new_category {
-      flex: 1;
-    }
-    
-    .categories__input {
-      position: absolute;
-      top: 58%;
-      left: 12%;
-      font-size: 20px;
-      padding: 10px;
-    }
-    
-    .categories__body {
-      display: grid;
-      height: 70%;
-      min-height: 200px;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: repeat(auto-fill, 70px);
-      gap: 4px;
-      overflow-y: scroll;
-      padding: 5px 0;
-    }
-    
-    /* ============== categories footer ============ */
-    .categories__footer {
-      position: absolute;
-      bottom: 0px;
-      left: 0px;
-      height: 70px;
-      width: 100%;
-    }
-    
     .categories__footer-template {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 70px;
-      width: 100%;
-      background-color: rgb(224, 224, 224);
-      color: black;
-      cursor: pointer;
-      border-radius: 0px 0px 10px 10px;
-      border: 1px solid rgb(108, 117, 125);
-      background-color: var(--categoriesColors);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70px;
+        width: 100%;
+        background-color: rgb(224, 224, 224);
+        color: black;
+        cursor: pointer;
+        border-radius: 0px 0px 10px 10px;
+        border: 1px solid rgb(108, 117, 125);
+        background-color: var(--categoriesColors);
+        &:hover{
+          background-color: var(--categoriesColorsHover);
+        }
+        &:active {
+          background-color: var(--categoriesColorsActive);
+        }
+        .container__footer-edit{
+          fill:white
+        }
     }
-    .categories__footer-template:hover {
-      background-color: var(--categoriesColorsHover);
-    }
-    .categories__footer-template:active {
-      background-color: var(--categoriesColorsActive);
-    }
-    .categories__footer-template .container__footer-edit {
-      fill: white;
-    }
-    
     .categories__footer-title {
-      font-weight: 100;
-      font-size: 20px;
-      color: white;
+        font-weight: 100;
+        font-size: 20px;
+        color: white;
     }
-    
     .categories__footer-spacer {
-      height: 20px;
-      width: 40px;
+        height: 20px;
+        width: 40px;
     }
-    
     .categories__footer-edit {
-      background: url("https://i.ibb.co/2FP1V5J/edit-pencil-line-02-svgrepo-com.png");
+      background: url('https://i.ibb.co/2FP1V5J/edit-pencil-line-02-svgrepo-com.png');
       background-position: center;
       background-size: cover;
       background-color: transparent;
@@ -374,229 +352,247 @@
       width: 20px;
       height: 20px;
       cursor: default !important;
-    }
+  }
+  .categories__footer-edit:hover{
+    background-color: var(--categoriesEditHover);
+  
+  }
+  .categories__footer-edit:active{
+    background-color: var(--categoriesEditActive);
+  
+  }
+      
+      
+      /*======================== modal- templates */
+      .templates {
+        position: absolute;
+        top: 0;
+        left:0;
+        z-index: 20;
+        width: 100%;
+        height: 100%;
+        background-color: #2d2d2d;
+      }
+      .templates__header {
+        position: relative;
+        top: 0;
+        height: 23%;
+        background-color: var(--templatesColors);
+        border-radius: 10px 10px 0px 0px;
+        border: 1px solid rgb(108, 117, 125);
+      }
+      .templates__title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 30px;
+        font-weight: 100;
+        color: #fff;
+        width: 354px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .templates__buttons {
+        display: flex;
+        justify-content: center;
+        height: 40px;
+        font-size: 15px;
+      }
+      .templates__back{
+        flex: 1;
+      }
+      .templates__new_template{
+        flex: 1;
+      }
     
-    .categories__footer-edit:hover {
-      background-color: var(--categoriesEditHover);
-    }
+      .templates__input {
+        position: absolute;
+        top: 58%;
+        left: 12%;
+        font-size: 20px;
+        padding: 10px;
+      }
+      
+      .templates__body {
+        display: grid;
+        height: 70%;
+        min-height: 200px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(auto-fill, 70px);
+        gap: 4px;
+        overflow-y: scroll;
+        padding: 5px 0;
+      }
+      /* ==================== templates footer */
+  //     .templates__footer {
+  //       position: absolute;
+  //       bottom: 0px;
+  //       left: 0px;
+  //       height: 70px;
+  //       width: 100%;
+  //   }
+  //   .templates__footer-template {
+  //     display: flex;
+  //     justify-content: center;
+  //     align-items: center;
+  //     height: 70px;
+  //     width: 100%;
+  //     background-color: rgb(224, 224, 224);
+  //     color: black;
+  //     cursor: pointer;
+  //     border-radius: 0px 0px 10px 10px;
+  //     border: 1px solid rgb(108, 117, 125);
+  //     &:hover{
+  //       background-color: var(--btnHover);
+  //     }
+  //     &:active {
+  //       background-color: var(--btnActive);
+  //     }
+  // }
+  //   .templates__footer-title {
+  //       font-weight: 100;
+  //       font-size: 20px;
+  //   }
+  //   .templates__footer-spacer {
+  //       height: 20px;
+  //       width: 40px;
+  //   }
+  
     
-    .categories__footer-edit:active {
-      background-color: var(--categoriesEditActive);
-    }
+      /* Modal template */
+      .lica-modalTemplate {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 4;
+        background-color: rgba(128, 128, 128, 0.396);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+      }
+      .lica-modalContent {
+        position: relative;
+        width: 80%;
+        height: 600px;
+        border-radius: 10px;
+        background-color: var(--templatesColors);
+      }
+      .lica-modalTemplateName {
+        position: relative;
+        font-size: 20px;
+        padding: 10px;
+        margin-top: 10px;
+        margin-left: 10px;
+        height: 43px;
+      }
+      .lica-modalSave {
+        font-size: 20px;
+        height: 42px;
+        width: 80px;
+      }
+      .lica-modalCancel {
+        font-size: 20px;
+        height: 42px;
+        width: 80px;
+      }
     
-    /*======================== modal- templates */
-    .templates {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 20;
-      width: 100%;
-      height: 100%;
-      background-color: #2d2d2d;
-    }
+      .lica-modalText {
+        overflow: auto;
+        resize: horizontal;
+        position: relative;
+        left: 10px;
+        top: 20px;
+        font-size: 16px;
+        padding: 10px;
+        height: 510px;
+        width: 660px;
+      }
     
-    .templates__header {
-      position: relative;
-      top: 0;
-      height: 20%;
-      background-color: var(--templatesColors);
-      border-radius: 10px 10px 0px 0px;
-      border: 1px solid rgb(108, 117, 125);
-    }
-    
-    .templates__title {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      font-size: 30px;
-      font-weight: 100;
-      color: #fff;
-      width: 354px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    
-    .templates__buttons {
-      display: flex;
-      justify-content: center;
-      height: 40px;
-      font-size: 15px;
-    }
-    
-    .templates__back {
-      flex: 1;
-    }
-    
-    .templates__new_template {
-      flex: 1;
-    }
-    
-    .templates__input {
-      position: absolute;
-      top: 58%;
-      left: 12%;
-      font-size: 20px;
-      padding: 10px;
-    }
-    
-    .templates__body {
-      display: grid;
-      height: 70%;
-      min-height: 200px;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: repeat(auto-fill, 70px);
-      gap: 4px;
-      overflow-y: scroll;
-      padding: 5px 0;
-    }
-    
-    /* ==================== templates footer */
-    /* Modal template */
-    .lica-modalTemplate {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: 4;
-      background-color: rgba(128, 128, 128, 0.396);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .lica-modalContent {
-      position: relative;
-      width: 80%;
-      height: 600px;
-      border-radius: 10px;
-      background-color: var(--templatesColors);
-    }
-    
-    .lica-modalTemplateName {
-      position: relative;
-      font-size: 20px;
-      padding: 10px;
-      margin-top: 10px;
-      margin-left: 10px;
-      height: 43px;
-    }
-    
-    .lica-modalSave {
-      font-size: 20px;
-      height: 42px;
-      width: 80px;
-    }
-    
-    .lica-modalCancel {
-      font-size: 20px;
-      height: 42px;
-      width: 80px;
-    }
-    
-    .lica-modalText {
-      overflow: auto;
-      resize: horizontal;
-      position: relative;
-      left: 10px;
-      top: 20px;
-      font-size: 16px;
-      padding: 10px;
-      height: 510px;
-      width: 660px;
-    }
-    
-    .lica-modalInstruction {
-      font-size: 16px;
-      color: rgba(255, 255, 255, 0.8392156863);
-      position: absolute;
-      top: 70px;
-      right: 50px;
-    }
-    
-    .lica-modalInstructionRU {
-      margin-bottom: 20px;
-    }
-    
-    .highlight {
-      color: black;
-      font-weight: bold;
-    }
-    
+      .lica-modalInstruction{
+        font-size: 16px;
+        color: #ffffffd6;
+        position: absolute;
+        top: 70px;
+        right: 50px;
+      }
+      .lica-modalInstructionRU{
+        margin-bottom: 20px;
+      }
+      .lica-modalInstructionEN{}
+      .highlight {
+        color:black;
+        font-weight: bold;
+      }
     /*=========================================Footer====================================== */
     .container__footer {
-      position: absolute;
-      bottom: 0px;
-      left: 0px;
-      height: 70px;
-      width: 100%;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        width: 100%;
     }
-    
     .container__footer-template {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 70px;
-      width: 100%;
-      margin-top: 10px;
-      background-color: rgb(224, 224, 224);
-      color: black;
-      cursor: pointer;
-      border-radius: 0px 0px 10px 10px;
-      border: 1px solid rgb(108, 117, 125);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70px;
+        width: 100%;
+        margin-top: 10px;
+        background-color: rgb(224, 224, 224);
+        color: black;
+        cursor: pointer;
+        border-radius: 0px 0px 10px 10px;
+        border: 1px solid rgb(108, 117, 125);
     }
-    
-    .container__footer-template:hover {
+    .container__footer-template:hover{
       background-color: var(--emptyTemplateHover);
     }
-    
-    .container__footer-template:active {
+    .container__footer-template:active{
       background-color: var(--emptyTemplateActive);
     }
-    
     .container__footer-title {
-      font-weight: 100;
-      font-size: 20px;
+        font-weight: 100;
+        font-size: 20px;
     }
-    
     .container__footer-spacer {
-      height: 20px;
-      width: 40px;
+        height: 20px;
+        width: 40px;
     }
     
     .container__footer-edit {
-      background: url("https://svgshare.com/i/tqA.svg)");
-      background-position: center;
-      background-size: cover;
-      cursor: default;
-      font-size: 16px;
-      width: 20px;
-      height: 20px;
-      cursor: default !important;
+        background: url('https://svgshare.com/i/tqA.svg)');
+        background-position: center;
+        background-size: cover;
+        cursor: default;
+        font-size: 16px;
+        width: 20px;
+        height: 20px;
+        cursor: default !important;
     }
-    
-    .container__footer-edit:hover {
+    .container__footer-edit:hover{
       background-color: var(--btnEditHover);
     }
-    
-    .container__footer-edit:active {
+    .container__footer-edit:active{
       background-color: var(--btnEditActive);
     }
     
+    
     /* ===================media queries */
-    @media (max-width: 1500px) {
+    @media (max-width:1500px){
       .lica-modalText {
         width: 50%;
       }
     }
-    @media (max-width: 1300px) {
+    @media (max-width:1300px){
       .lica-modalText {
         width: 400px;
       }
     }
-    @media (max-width: 1175px) {
+    @media (max-width:1175px){
       .lica-modalText {
         width: 98%;
         height: 250px;
@@ -606,12 +602,10 @@
         left: 30px;
       }
     }
+  
     .hide {
       display: none;
     }
-    
-    /*# sourceMappingURL=main.css.map */
-    
     `;
     //#endregion
     

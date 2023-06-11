@@ -751,6 +751,7 @@
         title: string,
         text: string,
         categoryID: string,
+        selectTags: boolean;
     }
 
     // Add new language - listener
@@ -1161,7 +1162,8 @@
               id: btnObject.id,
               title: btnObject.title,
               categoryID: 'none',
-              text: `Hi #user_name#!\n<br>\nThank you for contacting our *brand* Support Team!\n<br>\n<br>\nIn order to receive a prompt response, we also advise you to contact live chat on our website. Our agents work 24/7 for you every day.\n<br>\nSincerely,\n<br>*brand* Support team`
+              text: `Hi #user_name#!\n<br>\nThank you for contacting our *brand* Support Team!\n<br>\n<br>\nIn order to receive a prompt response, we also advise you to contact live chat on our website. Our agents work 24/7 for you every day.\n<br>\nSincerely,\n<br>*brand* Support team`,
+              selectTags: false,
           }
               e.stopPropagation();
               console.log('emptyTemplate objects is ', emptyTemplateObj)
@@ -1288,24 +1290,27 @@
 
 
 
-          // search for inputt
-          categoriesInput?.addEventListener('keyup', (e) => {
-            let val = categoriesInput.value.trim().toLowerCase();
-            let buttons = document.querySelectorAll('.lica-btn')
-            if(val !== '') {
-              buttons.forEach((item:any) => {
-                if(item.innerText.toLowerCase().search(val) === -1) {
-                  item.classList.add('hide')
-                } else {
-                  item.classList.remove('hide')
-                }
-              })
-            } else {
-              buttons.forEach((item:any) => {
+        // search for input
+        categoriesInput?.addEventListener('keyup', (e) => {
+          let val = categoriesInput.value.trim().toLowerCase();
+          let buttons = document.querySelectorAll('.lica-btn')
+          if(val !== '') {
+            buttons.forEach((item:any) => {
+              if(item.innerText.toLowerCase().search(val) === -1) {
+                item.classList.add('hide')
+              } else {
                 item.classList.remove('hide')
-              })
-            }
-          })
+              }
+            })
+          } else {
+            buttons.forEach((item:any) => {
+              item.classList.remove('hide')
+            })
+          }
+        })
+
+
+
 
 
         
@@ -1383,7 +1388,8 @@
                   id: (Date.now()).toString(),
                   title: 'New Template',
                   categoryID: (categoryObj.id).toString(),
-                  text: `Hi #user_name#!\n<br>\nThank you for contacting our *brand* Support Team!\n<br>\n<br>\nIn order to receive a prompt response, we also advise you to contact live chat on our website. Our agents work 24/7 for you every day.\n<br>\nSincerely,\n<br>*brand* Support team`
+                  text: `Hi #user_name#!\n<br>\nThank you for contacting our *brand* Support Team!\n<br>\n<br>\nIn order to receive a prompt response, we also advise you to contact live chat on our website. Our agents work 24/7 for you every day.\n<br>\nSincerely,\n<br>*brand* Support team`,
+                  selectTags: false,
               }
 
               buttonsArray.forEach((item:any) => {
@@ -1469,6 +1475,7 @@
                       const modalSave = document.querySelector('.lica-modalSave') as HTMLElement
                       const modalCancel = document.querySelector('.lica-modalCancel') as HTMLElement
                       const modalText = document.querySelector('.lica-modalText') as HTMLTextAreaElement;
+                      const toggleButton = document.querySelector<HTMLInputElement>('.toggle__input');
                       
                       //close modal when clicked outsidee
                       modalTemplate.addEventListener('mousedown', (e:MouseEvent) => {
@@ -1516,11 +1523,26 @@
                               })
                           })
                       })
-                  })
-              }
 
-
-              // create delete btn
+                       // selectTags - toggle
+                      toggleButton!.addEventListener('change', () => {
+                        templateObj.selectTags = !templateObj.selectTags;
+                        console.log(templateObj.selectTags)
+                        console.log('toggle changed')
+                      })
+                      if(templateObj.selectTags === true) {
+                        toggleButton!.checked = true;
+                        console.log(`select tags set to ${templateObj.selectTags}`)
+                      } else {
+                        toggleButton!.checked = false;
+                        console.log(`select tags set to ${templateObj.selectTags}`)
+                      }
+                    })
+                  }
+                  
+                  
+                  
+                  // create delete btn
               createDeleteBtnCategories(newButton)
               function createDeleteBtnCategories(parent: HTMLElement) {
                   const deleteBtn = document.createElement('button')
@@ -1643,7 +1665,8 @@
                 id: btnObject.id,
                 title: btnObject.title,
                 categoryID: 'none',
-                text: `Hi #user_name#!\n<br>\nThank you for contacting our *brand* Support Team!\n<br>\n<br>\nIn order to receive a prompt response, we also advise you to contact live chat on our website. Our agents work 24/7 for you every day.\n<br>\nSincerely,\n<br>*brand* Support team`
+                text: `Hi #user_name#!\n<br>\nThank you for contacting our *brand* Support Team!\n<br>\n<br>\nIn order to receive a prompt response, we also advise you to contact live chat on our website. Our agents work 24/7 for you every day.\n<br>\nSincerely,\n<br>*brand* Support team`,
+                selectTags:false,
             }
                 e.stopPropagation();
                 console.log('emptyTemplate objects is ', emptyTemplateObj)
@@ -1785,6 +1808,7 @@
               })
             }
           })
+
         } 
     }
 
@@ -1854,7 +1878,7 @@
                 modal.remove();
             })
 
-            // save button
+            // save buttonn
             modalSave.addEventListener('click', (e) => {
                 e.stopPropagation();
                 emptyTemplateLvl1Array = [];
@@ -1862,7 +1886,8 @@
                     id: (Date.now()).toString(),
                     title: 'emptyTemplate1',
                     categoryID: 'none',
-                    text: `Hi #user_name#!\n<br>\nThank you for contacting our *brand* Support Team!\n<br>\n<br>\nIn order to receive a prompt response, we also advise you to contact live chat on our website. Our agents work 24/7 for you every day.\n<br>\nSincerely,\n<br>*brand* Support team`
+                    text: `Hi #user_name#!\n<br>\nThank you for contacting our *brand* Support Team!\n<br>\n<br>\nIn order to receive a prompt response, we also advise you to contact live chat on our website. Our agents work 24/7 for you every day.\n<br>\nSincerely,\n<br>*brand* Support team`,
+                    selectTags:false,
                 }
                 emptyTemplateObj.text = modalText.value;
                 emptyTemplateLvl1Array

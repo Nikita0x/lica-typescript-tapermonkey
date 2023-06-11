@@ -1079,7 +1079,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                         id: btnObject.id,
                         title: btnObject.title,
                         categoryID: 'none',
-                        text: `Hi #user_name#!\n<br>\nThank you for contacting our *brand* Support Team!\n<br>\n<br>\nIn order to receive a prompt response, we also advise you to contact live chat on our website. Our agents work 24/7 for you every day.\n<br>\nSincerely,\n<br>*brand* Support team`
+                        text: `Hi #user_name#!\n<br>\nThank you for contacting our *brand* Support Team!\n<br>\n<br>\nIn order to receive a prompt response, we also advise you to contact live chat on our website. Our agents work 24/7 for you every day.\n<br>\nSincerely,\n<br>*brand* Support team`,
+                        selectTags: false,
                     };
                     e.stopPropagation();
                     console.log('emptyTemplate objects is ', emptyTemplateObj);
@@ -1190,7 +1191,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                     openEditor();
                 }
             });
-            // search for inputt
+            // search for input
             categoriesInput === null || categoriesInput === void 0 ? void 0 : categoriesInput.addEventListener('keyup', (e) => {
                 let val = categoriesInput.value.trim().toLowerCase();
                 let buttons = document.querySelectorAll('.lica-btn');
@@ -1277,7 +1278,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                         id: (Date.now()).toString(),
                         title: 'New Template',
                         categoryID: (categoryObj.id).toString(),
-                        text: `Hi #user_name#!\n<br>\nThank you for contacting our *brand* Support Team!\n<br>\n<br>\nIn order to receive a prompt response, we also advise you to contact live chat on our website. Our agents work 24/7 for you every day.\n<br>\nSincerely,\n<br>*brand* Support team`
+                        text: `Hi #user_name#!\n<br>\nThank you for contacting our *brand* Support Team!\n<br>\n<br>\nIn order to receive a prompt response, we also advise you to contact live chat on our website. Our agents work 24/7 for you every day.\n<br>\nSincerely,\n<br>*brand* Support team`,
+                        selectTags: false,
                     };
                     buttonsArray.forEach((item) => {
                         item.categories.forEach((category) => {
@@ -1356,6 +1358,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                             const modalSave = document.querySelector('.lica-modalSave');
                             const modalCancel = document.querySelector('.lica-modalCancel');
                             const modalText = document.querySelector('.lica-modalText');
+                            const toggleButton = document.querySelector('.toggle__input');
                             //close modal when clicked outsidee
                             modalTemplate.addEventListener('mousedown', (e) => {
                                 const computedStyle = window.getComputedStyle(modalContent);
@@ -1396,6 +1399,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                                     });
                                 });
                             });
+                            // selectTags - toggle
+                            toggleButton.addEventListener('change', () => {
+                                templateObj.selectTags = !templateObj.selectTags;
+                                console.log(templateObj.selectTags);
+                                console.log('toggle changed');
+                            });
+                            if (templateObj.selectTags === true) {
+                                toggleButton.checked = true;
+                                console.log(`select tags set to ${templateObj.selectTags}`);
+                            }
+                            else {
+                                toggleButton.checked = false;
+                                console.log(`select tags set to ${templateObj.selectTags}`);
+                            }
                         });
                     }
                     // create delete btn
@@ -1501,7 +1518,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                             id: btnObject.id,
                             title: btnObject.title,
                             categoryID: 'none',
-                            text: `Hi #user_name#!\n<br>\nThank you for contacting our *brand* Support Team!\n<br>\n<br>\nIn order to receive a prompt response, we also advise you to contact live chat on our website. Our agents work 24/7 for you every day.\n<br>\nSincerely,\n<br>*brand* Support team`
+                            text: `Hi #user_name#!\n<br>\nThank you for contacting our *brand* Support Team!\n<br>\n<br>\nIn order to receive a prompt response, we also advise you to contact live chat on our website. Our agents work 24/7 for you every day.\n<br>\nSincerely,\n<br>*brand* Support team`,
+                            selectTags: false,
                         };
                         e.stopPropagation();
                         console.log('emptyTemplate objects is ', emptyTemplateObj);
@@ -1692,7 +1710,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                 modalCancel.addEventListener('click', (e) => {
                     modal.remove();
                 });
-                // save button
+                // save buttonn
                 modalSave.addEventListener('click', (e) => {
                     e.stopPropagation();
                     emptyTemplateLvl1Array = [];
@@ -1700,7 +1718,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                         id: (Date.now()).toString(),
                         title: 'emptyTemplate1',
                         categoryID: 'none',
-                        text: `Hi #user_name#!\n<br>\nThank you for contacting our *brand* Support Team!\n<br>\n<br>\nIn order to receive a prompt response, we also advise you to contact live chat on our website. Our agents work 24/7 for you every day.\n<br>\nSincerely,\n<br>*brand* Support team`
+                        text: `Hi #user_name#!\n<br>\nThank you for contacting our *brand* Support Team!\n<br>\n<br>\nIn order to receive a prompt response, we also advise you to contact live chat on our website. Our agents work 24/7 for you every day.\n<br>\nSincerely,\n<br>*brand* Support team`,
+                        selectTags: false,
                     };
                     emptyTemplateObj.text = modalText.value;
                     emptyTemplateLvl1Array

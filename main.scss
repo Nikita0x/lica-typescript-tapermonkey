@@ -20,23 +20,23 @@
     --templatesColors: rgb(39 96 87);
   }
   
-  .sidebar {
-      min-width: 365px;
-  }
+  // .sidebar {
+  //     min-width: 365px;
+  // }
   /* */
   
   .lica-container {
       position: sticky;
       top: 5%;
-      width: 355px;
-      transform: translateX(-43.8px);
+      width: 320px;
+      transform: translateX(-15.1%);
   }
   
   .container {
       position: relative;
       top:0;
       height: 600px;
-      width: 355px;
+      width: 320px;
       border-radius: 10px;
       border: 1px solid black;
       background-color: yellow;
@@ -133,7 +133,7 @@
   
     .lica-btn__title {
       padding-left: 5px;
-      width: 130px;
+      width: 120px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -212,7 +212,7 @@
     .lica-btn__input{
       position: relative;
       height: 25px;
-      width: 126px;
+      width: 112px;
       left: 3px;
       font-size: 16px;
     }
@@ -245,7 +245,6 @@
       font-size: 30px;
       font-weight: 100;
       color: #fff;
-      width: 354px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -274,9 +273,9 @@
     
     .categories__body {
       display: grid;
-      height: 70%;
+      height: 400px;
       min-height: 200px;
-      grid-template-columns: 1fr 1fr;
+      // grid-template-columns: 1fr 1fr;
       grid-template-rows: repeat(auto-fill, 70px);
       gap: 4px;
       overflow-y: scroll;
@@ -316,6 +315,10 @@
       font-weight: 100;
       font-size: 20px;
       color: white;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 235px;
   }
   .categories__footer-spacer {
       height: 20px;
@@ -340,7 +343,19 @@
   background-color: var(--categoriesEditActive);
 
 }
-    
+// styles to apply for categories buttons
+.categories__title-utility {
+  width: 250px;
+}
+.categories__input-utility {
+  width: 253px;
+}
+.categories__accept-utility {
+  right: 8%;
+}
+.categories__margin-utility {
+  margin: 0 7px;
+}
     
     /*======================== modal- templates */
     .templates {
@@ -368,7 +383,6 @@
       font-size: 30px;
       font-weight: 100;
       color: #fff;
-      width: 354px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -396,9 +410,8 @@
     
     .templates__body {
       display: grid;
-      height: 70%;
+      height: 400px;
       min-height: 200px;
-      grid-template-columns: 1fr 1fr;
       grid-template-rows: repeat(auto-fill, 70px);
       gap: 4px;
       overflow-y: scroll;

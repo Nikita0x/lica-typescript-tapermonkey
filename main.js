@@ -48,7 +48,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     
     /* */
     .lica-container {
-      position: relative;
+      position: sticky;
       top: 5%;
       width: 355px;
       transform: translateX(-43.8px);
@@ -467,7 +467,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
       height: 100%;
       top: 0;
       left: 0;
-      z-index: 1;
+      z-index: 4;
       background-color: rgba(128, 128, 128, 0.396);
       display: flex;
       justify-content: center;
@@ -1777,6 +1777,29 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                     });
                 });
             }
+            function selectStatus(statusTitle) {
+                return new Promise((resolve, reject) => {
+                    const element = tagsNodeList[1];
+                    element.style.display = 'block';
+                    const statuses = tagsNodeList[1].querySelectorAll('.el-select-dropdown__item');
+                    // select "Спам"  
+                    statuses.forEach(item => {
+                        const el = item;
+                        if (el.innerText.includes(statusTitle)) {
+                            el.click();
+                            const accept = document.querySelector("#page-wrapper > div > div > section > div > main > div.thread-details > div > div:nth-child(2) > div > div:nth-child(1) > div > div > i.icon-2x.pointer.text-dark-50.value-icon.flaticon2-check-mark");
+                            const overlayClose = document.querySelector("#page-wrapper > div > div > section > div > main > div.thread-details > div > div:nth-child(5) > div > div > header > button");
+                            accept.click();
+                            setTimeout(() => {
+                                element.style.display = 'none';
+                                overlayClose.click();
+                                console.log('selectStatus - resolved');
+                                return resolve();
+                            }, 500);
+                        }
+                    });
+                });
+            }
             openTagss()
                 .then(() => {
                 console.log('openTags promise -finished');
@@ -1792,6 +1815,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
             })
                 .then(() => {
                 console.log('selectSubtopics - finished');
+                return selectStatus('Решено');
             });
         });
     }, 2000);

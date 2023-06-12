@@ -40,7 +40,7 @@
     
     /* */
     .lica-container {
-      position: sticky;
+      position: relative;
       top: 5%;
       width: 320px;
       transform: translateX(-15.1%);
@@ -672,6 +672,8 @@
     .hide {
       display: none;
     }
+    
+    /*# sourceMappingURL=main.css.map */
     
     `;
     //#endregion
@@ -1919,15 +1921,20 @@
     emptyTemplate1lvl.addEventListener('click', () => {
         insertTemplate(emptyTemplateLvl1Array[0])
         function insertTemplate(template: any) {
-            let brand = document.querySelector(
-                '#page-wrapper > div > div > section > div > main > div.thread-details > div > div:nth-child(2) > div > div:nth-child(2) > b'
-            )?.nextElementSibling?.innerHTML as any;
+            const brands = document.querySelectorAll('b')
+            let brand = '' as any
+            let brandName = '' as any;
+            brands.forEach((item: any) => {
+              if(item.innerText === 'Brand:') {
+                brand = item;
+                brandName = brand.nextElementSibling.innerText;
+                console.log(brandName)   
+              }
+            })
 
             let word = 'brand';
             let pattern = new RegExp('\\*' + word + '\\*', 'g');
-            const openMail = document.querySelector(
-            '#page-wrapper > div > div > section > div > main > div.reply > p'
-            ) as HTMLButtonElement;
+            const openMail = document.querySelector('.reply > p') as HTMLButtonElement;
             openMail.click();
             async function openEditor() {
                 const sourceBtn = document.getElementById('cke_39') as HTMLElement;
@@ -1937,7 +1944,7 @@
                 '.cke_source.cke_reset.cke_enable_context_menu.cke_editable.cke_editable_themed.cke_contents_ltr'
                 ) as HTMLTextAreaElement;
                 textArea.value = template.text;
-                textArea.value = textArea.value.replace(pattern, brand);
+                textArea.value = textArea.value.replace(pattern, brandName);
                 await delay(100);
                 sourceBtn.click();
                 console.log('Finished!');

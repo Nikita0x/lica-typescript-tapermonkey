@@ -44,7 +44,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     
     /* */
     .lica-container {
-      position: sticky;
+      position: relative;
       top: 5%;
       width: 320px;
       transform: translateX(-15.1%);
@@ -676,6 +676,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     .hide {
       display: none;
     }
+    
+    /*# sourceMappingURL=main.css.map */
     
     `;
         //#endregion
@@ -1744,11 +1746,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         emptyTemplate1lvl.addEventListener('click', () => {
             insertTemplate(emptyTemplateLvl1Array[0]);
             function insertTemplate(template) {
-                var _a, _b;
-                let brand = (_b = (_a = document.querySelector('#page-wrapper > div > div > section > div > main > div.thread-details > div > div:nth-child(2) > div > div:nth-child(2) > b')) === null || _a === void 0 ? void 0 : _a.nextElementSibling) === null || _b === void 0 ? void 0 : _b.innerHTML;
+                const brands = document.querySelectorAll('b');
+                let brand = '';
+                let brandName = '';
+                brands.forEach((item) => {
+                    if (item.innerText === 'Brand:') {
+                        brand = item;
+                        brandName = brand.nextElementSibling.innerText;
+                        console.log(brandName);
+                    }
+                });
                 let word = 'brand';
                 let pattern = new RegExp('\\*' + word + '\\*', 'g');
-                const openMail = document.querySelector('#page-wrapper > div > div > section > div > main > div.reply > p');
+                const openMail = document.querySelector('.reply > p');
                 openMail.click();
                 function openEditor() {
                     return __awaiter(this, void 0, void 0, function* () {
@@ -1757,7 +1767,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                         yield delay(100);
                         const textArea = document.querySelector('.cke_source.cke_reset.cke_enable_context_menu.cke_editable.cke_editable_themed.cke_contents_ltr');
                         textArea.value = template.text;
-                        textArea.value = textArea.value.replace(pattern, brand);
+                        textArea.value = textArea.value.replace(pattern, brandName);
                         yield delay(100);
                         sourceBtn.click();
                         console.log('Finished!');

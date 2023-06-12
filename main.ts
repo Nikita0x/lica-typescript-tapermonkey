@@ -18,6 +18,7 @@
     const styleElement = document.createElement('style');
     styleElement.type = 'text/css';
     document.head.appendChild(styleElement);
+
     styleElement.textContent = `
     :root {
       --btnMain: #f0f0f0;

@@ -2101,19 +2101,19 @@
 
       if(lang === 'RU') {
         // If language is Russian
-        selectTags('Входящие', 'Другое', 'Спам', 'Решено', 'Тег', 'Не отправлять!');
+        selectTags('Входящие', 'Другое', 'Спам', 'Решено', 'Тег', 'Не отправлять!', 'Статус:');
       } else if (lang === 'EN') {
         // If language is English
-        selectTags('Incoming', 'Other', 'Spam', 'Resolved', 'Tag', 'Do not send!');
+        selectTags('Incoming', 'Other', 'Spam', 'Resolved', 'Tag', 'Do not send!', 'Status:');
       } else if (lang === 'UK') {
         // If language is Ukrainian
-        selectTags('Вхідні', 'Інше', 'Спам', 'Вирішено', 'Тег', 'Не надсилати!');
+        selectTags('Вхідні', 'Інше', 'Спам', 'Вирішено', 'Тег', 'Не надсилати!', 'Статус:');
       } else if (lang === 'PT') {
         // If language is Ukrainian
-        selectTags('entrada', 'outro', 'Spam', 'resolvido', 'Marcação', 'Não envie!');
+        selectTags('entrada', 'outro', 'Spam', 'resolvido', 'Marcação', 'Não envie!', 'Status:');
       }
       
-      function selectTags(categoryTitle:string,topicTitle:string, subtopicTitle:string, statusTitle:string, Tag:string, doNotSend:string) {
+      function selectTags(categoryTitle:string,topicTitle:string, subtopicTitle:string, statusTitle:string, Tag:string, doNotSend:string, Status:string) {
         function openTagss(){
           return new Promise<void>((resolve,reject) => {
             //open tags menu
@@ -2208,7 +2208,7 @@
           })
         }
     
-        function selectStatus(statusTitle:string, Tag:string, doNotSend:string) {
+        function selectStatus(statusTitle:string, Tag:string, doNotSend:string, Status:string) {
           return new Promise<void> ((resolve,reject) => {
             const element = tagsNodeList[1] as HTMLElement
             element.style.display = 'block';
@@ -2229,13 +2229,13 @@
                   setTimeout(() => {
                     const brands = document.querySelectorAll('b')
                     debugger
-                    let tagName = '' as any;
+                    let statusName = '' as any;
                     brands.forEach((item:any) => {
-                      if(item.innerText === Tag) {
-                        tagName = item;
+                      if(item.innerText === Status) {
+                        statusName = item;
                       }
                     })
-                    const accept = tagName.nextElementSibling.querySelector('.value-edit.active').children[2];
+                    const accept = statusName.nextElementSibling.querySelector('.value-edit.active').children[2];
                     accept.click();
                     
                   }, 400);
@@ -2266,7 +2266,7 @@
             })
             .then(() => {
               console.log('selectSubtopics - finished')
-              return selectStatus(statusTitle, Tag, doNotSend)
+              return selectStatus(statusTitle, Tag, doNotSend, Status)
             })
       }
       

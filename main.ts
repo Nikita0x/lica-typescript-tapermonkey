@@ -13,7 +13,8 @@
         
 
     'use strict';
-    
+    //without bootstrap now 
+
     // #region css goes here
     const styleElement = document.createElement('style');
     styleElement.type = 'text/css';

@@ -1945,25 +1945,37 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
             const tagsNodeList = document.querySelectorAll('.el-popper.is-pure.is-light.el-select__popper'); //[1] - Статус, [3] -  Категория, [4] - Тема, [5] - Под тема
             if (lang === 'RU') {
                 // If language is Russian
-                selectTagsRU('Входящие', 'Другое', 'Спам', 'Решено');
+                selectTags('Входящие', 'Другое', 'Спам', 'Решено', 'Тег', 'Не отправлять!');
             }
             else if (lang === 'EN') {
                 // If language is English
-                selectTagsRU('Incoming', 'Other', 'Spam', 'Resolved');
+                selectTags('Incoming', 'Other', 'Spam', 'Resolved', 'Tag', 'Do not send!');
             }
             else if (lang === 'UK') {
                 // If language is Ukrainian
-                selectTagsRU('Вхідні', 'Інше', 'Спам', 'Вирішено');
+                selectTags('Вхідні', 'Інше', 'Спам', 'Вирішено', 'Тег', 'Не надсилати!');
             }
             else if (lang === 'PT') {
                 // If language is Ukrainian
-                selectTagsRU('entrada', 'outro', 'Spam', 'resolvido');
+                selectTags('entrada', 'outro', 'Spam', 'resolvido', 'Marcação', 'Não envie!');
             }
-            function selectTagsRU(categoryTitle, topicTitle, subtopicTitle, statusTitle) {
+            function selectTags(categoryTitle, topicTitle, subtopicTitle, statusTitle, Tag, doNotSend) {
                 function openTagss() {
                     return new Promise((resolve, reject) => {
                         //open tags menu
-                        const openTags = document.querySelector("#page-wrapper > div > div > section > div > main > div.thread-details > div > div:nth-child(3) > div > div:nth-child(1) > div > img");
+                        let openTags = '';
+                        if (lang === 'PT') {
+                            openTags = document.querySelector('img[title="Adicione tags"]');
+                        }
+                        else if (lang === 'RU') {
+                            openTags = document.querySelector('img[title="Добавить теги"]');
+                        }
+                        else if (lang === 'UK') {
+                            openTags = document.querySelector('img[title="Додати теги"]');
+                        }
+                        else if (lang === 'EN') {
+                            openTags = document.querySelector('img[title="Add tags"]');
+                        }
                         openTags.click();
                         setTimeout(() => {
                             console.log('tags opened - promise finished');
@@ -2010,7 +2022,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                         });
                     });
                 }
-                function selectSubtopics(subtopicTitle) {
+                function selectSubtopics(subtopicTitle, Tag) {
                     return new Promise((resolve, reject) => {
                         const element = tagsNodeList[5];
                         element.style.display = 'block';
@@ -2020,7 +2032,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                             const el = item;
                             if (el.innerText.includes(subtopicTitle)) {
                                 el.click();
-                                const accept = document.querySelector("#page-wrapper > div > div > section > div > main > div.thread-details > div > div:nth-child(3) > div > div:nth-child(1) > div > div > i.icon-2x.pointer.text-dark-50.value-icon.flaticon2-check-mark");
+                                // target "Tag" and then click accept button based on "Tag"'s position
+                                const brands = document.querySelectorAll('b');
+                                let tagName = '';
+                                brands.forEach((item) => {
+                                    if (item.innerText === Tag) {
+                                        tagName = item;
+                                    }
+                                });
+                                const accept = tagName.nextElementSibling.querySelector('.active').children[1];
                                 accept.click();
                                 setTimeout(() => {
                                     element.style.display = 'none';
@@ -2031,7 +2051,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                         });
                     });
                 }
-                function selectStatus(statusTitle) {
+                function selectStatus(statusTitle, Tag, doNotSend) {
                     return new Promise((resolve, reject) => {
                         const element = tagsNodeList[1];
                         element.style.display = 'block';
@@ -2041,12 +2061,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                             const el = item;
                             if (el.innerText.includes(statusTitle)) {
                                 el.click();
-                                const accept = document.querySelector("#page-wrapper > div > div > section > div > main > div.thread-details > div > div:nth-child(2) > div > div:nth-child(1) > div > div > i.icon-2x.pointer.text-dark-50.value-icon.flaticon2-check-mark");
-                                const overlayClose = document.querySelector("#page-wrapper > div > div > section > div > main > div.thread-details > div > div:nth-child(5) > div > div > header > button");
-                                accept.click();
                                 setTimeout(() => {
+                                    const doNotSendBtn = document.querySelectorAll('span');
+                                    doNotSendBtn.forEach(item => {
+                                        if (item.innerText === doNotSend) {
+                                            item.click();
+                                        }
+                                    });
+                                    setTimeout(() => {
+                                        const brands = document.querySelectorAll('b');
+                                        debugger;
+                                        let tagName = '';
+                                        brands.forEach((item) => {
+                                            if (item.innerText === Tag) {
+                                                tagName = item;
+                                            }
+                                        });
+                                        const accept = tagName.nextElementSibling.querySelector('.value-edit.active').children[2];
+                                        accept.click();
+                                    }, 400);
                                     element.style.display = 'none';
-                                    overlayClose.click();
                                     console.log('selectStatus - resolved');
                                     return resolve();
                                 }, 500);
@@ -2065,11 +2099,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                 })
                     .then(() => {
                     console.log('selectTopics promise resolved - finished');
-                    return selectSubtopics(subtopicTitle);
+                    return selectSubtopics(subtopicTitle, Tag);
                 })
                     .then(() => {
                     console.log('selectSubtopics - finished');
-                    return selectStatus(statusTitle);
+                    return selectStatus(statusTitle, Tag, doNotSend);
                 });
             }
         });
